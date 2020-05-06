@@ -7,6 +7,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test"
   },
+  "babelMacros": {
+    "styledComponents": {
+      "fileName": false,
+      "pure": true
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.4",
