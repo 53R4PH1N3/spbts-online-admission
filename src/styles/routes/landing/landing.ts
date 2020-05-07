@@ -1,12 +1,23 @@
 import styled from "styled-components/macro";
 
 export const StyledLanding = styled.div`
-  width: 40rem;
-  min-height: 52rem;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
 
-  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledLandingContainer = styled.main`
+  width: 40rem;
+  min-height: 48rem;
+
+  padding: 1rem 3.2rem;
 
   display: grid;
+  grid-template-rows: repeat(3, max-content) 1fr;
   row-gap: 4rem;
   align-content: start;
 

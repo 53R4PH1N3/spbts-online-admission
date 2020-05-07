@@ -3,8 +3,6 @@ import styled from "styled-components/macro";
 export const StyledLandingHeader = styled.header`
   display: grid;
   row-gap: 0.5rem;
-
-  padding: 0 1.6rem;
 `;
 
 export const StyledLandingHeading = styled.h1`

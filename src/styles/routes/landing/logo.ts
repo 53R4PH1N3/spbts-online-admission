@@ -1,11 +1,14 @@
 import styled from "styled-components/macro";
 
-export const StyledLandingLogoWrapper = styled.header`
+export const StyledLandingLogoWrapper = styled.div`
   width: 100%;
 
   display: grid;
+  column-gap: 2.4rem;
   grid-template-columns: max-content 1fr;
   align-items: center;
+
+  user-select: none;
 
   position: relative;
 
@@ -26,7 +29,10 @@ export const StyledLandingLogoWrapper = styled.header`
 `;
 
 export const StyledLandingLogo = styled.img`
-  width: 12rem;
+  width: 8rem;
+  height: 8rem;
+
+  margin: 0.8rem 0;
 `;
 
 export const StyledLandingSchoolName = styled.h3`

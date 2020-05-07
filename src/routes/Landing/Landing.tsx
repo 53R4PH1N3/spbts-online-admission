@@ -1,35 +1,53 @@
 import React from "react";
-import {
-  StyledLanding,
-  StyledLandingLogoWrapper,
-  StyledLandingSchoolName,
-  StyledLandingLogo,
-  StyledLandingHeader,
-  StyledLandingHeading,
-  StyledLandingSubHeading,
-} from "styles";
+import { RouteComponentProps } from "react-router-dom";
+import { Select, SelectOptionProps } from "components";
+import { StyledLandingCtaWrapper } from "styles";
 
-import logo from "assets/images/logo.png";
+import LandingHeader from "./LandingHeader";
+import LandingWrapper from "./LandingWrapper";
 
-type Props = {};
+type Props = {} & RouteComponentProps;
 
-const Landing: React.FC<Props> = () => {
+const Landing: React.FC<Props> = ({ history }) => {
+  const collegeOffers: SelectOptionProps[] = [
+    {
+      text: "Bachelor of Arts in Theology",
+      onClick: () => history.push("/ab-theology"),
+    },
+    {
+      text: "Bachelor of Arts in Christian Education",
+      onClick: () => history.push("/ab-christian-education"),
+    },
+  ];
+  const basicEdOffers: SelectOptionProps[] = [
+    {
+      text: "Kinder II",
+      onClick: () => history.push("/kinder-2"),
+    },
+    {
+      text: "Elementary",
+      onClick: () => history.push("/elementary"),
+    },
+    {
+      text: "Junior High School",
+      onClick: () => history.push("/junior-high"),
+    },
+    {
+      text: "Senior High School",
+      onClick: () => history.push("/senior-high"),
+    },
+  ];
   return (
-    <StyledLanding>
-      <StyledLandingLogoWrapper>
-        <StyledLandingLogo src={logo} />
-        <StyledLandingSchoolName>
-          Southern Philippine Baptist Theological Seminary, Inc.
-        </StyledLandingSchoolName>
-      </StyledLandingLogoWrapper>
-
-      <StyledLandingHeader>
-        <StyledLandingHeading>Online Admission</StyledLandingHeading>
-        <StyledLandingSubHeading>
-          Please identify yourself with the following options.
-        </StyledLandingSubHeading>
-      </StyledLandingHeader>
-    </StyledLanding>
+    <LandingWrapper>
+      <LandingHeader
+        heading="Online Admission"
+        subHeading="Please identify yourself with the following options."
+      />
+      <StyledLandingCtaWrapper>
+        <Select label="College" options={collegeOffers} />
+        <Select label="Basic Education" options={basicEdOffers} />
+      </StyledLandingCtaWrapper>
+    </LandingWrapper>
   );
 };
 

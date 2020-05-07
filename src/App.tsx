@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Landing } from "routes";
+import { routes } from "config";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Landing} />
+        {routes.map(({ exact, path, component }, index) => (
+          <Route exact={exact} path={path} component={component} key={index} />
+        ))}
       </Switch>
     </Router>
   );

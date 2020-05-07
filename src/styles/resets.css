@@ -15,13 +15,10 @@
 html {
   font-size: 62.5%;
   font-weight: normal;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
-  width: 100%;
-  min-height: 100vh;
-
   font-size: 1.4rem;
   line-height: 1.5;
   letter-spacing: 0.3px;
@@ -30,10 +27,6 @@ body {
   background-color: var(--color-bg-tertiary);
 
   overflow: hidden auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 h1,
@@ -42,6 +35,28 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Roboto", sans-serif;
   color: var(--color-heading-text);
   line-height: 1.25;
+}
+
+input,
+button,
+label {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+::selection {
+  color: var(--color-bg-primary);
+  background-color: var(--color-primary);
 }
