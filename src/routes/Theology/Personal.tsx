@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
-  StyledTheologyEducational,
-  StyledEducationalHeader,
+  StyledTheologySection,
+  StyledTheologySectionHeader,
   StyledPersonalFieldWrapper,
 } from "styles";
 import { InputWrapper, Input, SelectOptionProps, Select } from "components";
+import { PersonalProps } from "routes";
+import { useForm } from "hooks";
 
 const genderTypes: SelectOptionProps[] = [{ text: "Male" }, { text: "Female" }];
 
@@ -14,16 +16,140 @@ const civilStatus: SelectOptionProps[] = [
   { text: "Separated" },
 ];
 
-type Props = {};
+const initialValues: PersonalProps = {
+  firstName: "",
+  lastName: "",
+  middleName: "",
+  suffix: "",
 
-const PersonalInformation: React.FC<Props> = () => {
-  const [isMarried, setMarried] = React.useState(false);
+  gender: "",
+  civilStatus: "",
+  spouseName: "",
+
+  birthPlace: "",
+  birthDate: "",
+  age: "",
+
+  nationality: "",
+  dialect: "",
+  ethnicAffiliation: "",
+  religion: "",
+
+  contactNumber: "",
+  emailAddress: "",
+  facebookAccount: "",
+  homeAddress: "",
+
+  parentsAnnualIncome: {
+    annualIncome: "",
+    otherIncome: "",
+  },
+
+  parentsInfo: {
+    fathersName: "",
+    fathersOccupation: "",
+    mothersName: "",
+    mothersOccupation: "",
+  },
+
+  otherPersonSupport: {
+    completeName: "",
+    occupation: "",
+    address: "",
+    relationship: "",
+  },
+
+  churchName: "",
+  dateBaptized: "",
+  churchAddress: "",
+  association: "",
+  churchPastorName: "",
+  churchPastorContactNumber: "",
+};
+
+type Props = {
+  getValues?: (values: PersonalProps) => void;
+};
+
+const PersonalInformation: React.FC<Props> = ({ getValues }) => {
+  const { values, setValues, handleOnChange } = useForm<PersonalProps>({
+    initialValues,
+  });
+
+  const getGenderValue = useCallback(
+    (value) => {
+      setValues((prevState) => ({
+        ...prevState,
+        gender: value,
+      }));
+    },
+    [setValues]
+  );
+
+  const getCivilStatusValue = useCallback(
+    (value) => {
+      setValues((prevState) => ({
+        ...prevState,
+        civilStatus: value,
+      }));
+    },
+    [setValues]
+  );
+
+  const getParentsAnnualIncome = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        parentsAnnualIncome: {
+          ...prevState.parentsAnnualIncome,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  const getParentsInfo = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        parentsInfo: {
+          ...prevState.parentsInfo,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  const getOtherPersonSupport = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        otherPersonSupport: {
+          ...prevState.otherPersonSupport,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  useEffect(() => {
+    if (getValues) {
+      getValues(values);
+    }
+    // eslint-disable-next-line
+  }, [values]);
 
   return (
-    <StyledTheologyEducational>
-      <StyledEducationalHeader>
+    <StyledTheologySection>
+      <StyledTheologySectionHeader>
         <h2>Personal Information</h2>
-      </StyledEducationalHeader>
+      </StyledTheologySectionHeader>
 
       <StyledPersonalFieldWrapper>
         <InputWrapper
@@ -31,15 +157,35 @@ const PersonalInformation: React.FC<Props> = () => {
           id="full-name"
           columns="repeat(3, 1fr)"
         >
-          <Input label="First Name" name="firstName" id="first-name" />
-          <Input label="Last Name" name="lastName" id="last-name" />
-          <Input label="Middle Name" name="middleName" id="middle-name" />
+          <Input
+            label="First Name"
+            id="first-name"
+            name="firstName"
+            value={values.firstName}
+            onChange={handleOnChange}
+          />
+          <Input
+            label="Last Name"
+            id="last-name"
+            name="lastName"
+            value={values.lastName}
+            onChange={handleOnChange}
+          />
+          <Input
+            label="Middle Name"
+            id="middle-name"
+            name="middleName"
+            value={values.middleName}
+            onChange={handleOnChange}
+          />
           <Input
             label="Suffix"
             placeholder="Ex. Jr / Sr"
             id="suffix"
             required={false}
             name="suffix"
+            value={values.suffix}
+            onChange={handleOnChange}
           />
         </InputWrapper>
 
@@ -51,19 +197,19 @@ const PersonalInformation: React.FC<Props> = () => {
           <Select
             label="gender"
             options={genderTypes}
-            getSelectValue={(value) => console.log(value)}
+            getSelectValue={(value) => {
+              getGenderValue(value);
+            }}
           />
           <Select
             label="civil status"
             options={civilStatus}
             getSelectValue={(value) => {
-              if (value === "Married") {
-                setMarried(true);
-              }
+              getCivilStatusValue(value);
             }}
           />
 
-          {isMarried && (
+          {values.civilStatus === "Married" && (
             <Input
               label="Spouse Name"
               placeholder="Spouse Complete Name"
@@ -77,12 +223,28 @@ const PersonalInformation: React.FC<Props> = () => {
           id="birth-info"
           columns="repeat(3, 1fr)"
         >
-          <Input label="birth place" name="birthPlace" id="birth-place" />
+          <Input
+            label="birth place"
+            id="birth-place"
+            name="birthPlace"
+            value={values.birthPlace}
+            onChange={handleOnChange}
+          />
           <Input
             type="date"
             label="birth date"
-            name="birthDate"
             id="birth-date"
+            name="birthDate"
+            value={values.birthDate}
+            onChange={handleOnChange}
+          />
+          <Input
+            type="number"
+            label="age"
+            id="age"
+            name="age"
+            value={values.age}
+            onChange={handleOnChange}
           />
         </InputWrapper>
 
@@ -91,15 +253,36 @@ const PersonalInformation: React.FC<Props> = () => {
           id="nationalism"
           columns="repeat(3, 1fr)"
         >
-          <Input label="nationality" name="nationality" id="nationality" />
-          <Input label="dialect" name="dialect" id="dialect" />
+          <Input
+            label="nationality"
+            id="nationality"
+            name="nationality"
+            value={values.nationality}
+            onChange={handleOnChange}
+          />
+          <Input
+            label="dialect"
+            id="dialect"
+            name="dialect"
+            value={values.dialect}
+            onChange={handleOnChange}
+          />
           <Input
             label="ethnic affiliation"
             placeholder="Ex. Cebuano / Muslim / etc."
-            name="ethnic"
             id="ethnic"
+            name="ethnicAffiliation"
+            value={values.ethnicAffiliation}
+            onChange={handleOnChange}
           />
-          <Input label="religion" name="religion" id="religion" />
+          <Input
+            label="religion"
+            placeholder="Ex. Southern Baptist / Alliance / Pentecostal / Etc.."
+            id="religion"
+            name="religion"
+            value={values.religion}
+            onChange={handleOnChange}
+          />
         </InputWrapper>
 
         <InputWrapper
@@ -110,53 +293,94 @@ const PersonalInformation: React.FC<Props> = () => {
           <Input
             type="number"
             label="contact number"
-            name="contactNumber"
             id="contact-number"
+            name="contactNumber"
+            value={values.contactNumber}
+            onChange={handleOnChange}
           />
-          <Input type="email" label="email address" name="email" id="email" />
+          <Input
+            type="email"
+            label="email address"
+            id="email"
+            name="emailAddress"
+            value={values.emailAddress}
+            onChange={handleOnChange}
+          />
           <Input
             label="facebook account"
-            name="facebookAccount"
             id="facebook-account"
+            name="facebookAccount"
+            value={values.facebookAccount}
+            onChange={handleOnChange}
           />
-          <Input label="home address" name="homeAddress" id="home-address" />
+          <Input
+            label="home address"
+            id="home-address"
+            name="homeAddress"
+            value={values.homeAddress}
+            onChange={handleOnChange}
+          />
         </InputWrapper>
 
         <InputWrapper
-          heading="Father's Information"
-          id="father-information"
+          heading="Parent's / Family Annual Income"
+          id="parents-income"
+          columns="repeat(2, 1fr)"
+        >
+          <Input
+            label="Annual Income"
+            id="parents-annual-income"
+            name="annualIncome"
+            value={values.parentsAnnualIncome.annualIncome}
+            onChange={getParentsAnnualIncome}
+          />
+          <Input
+            label="Other Income"
+            placeholder="please specify"
+            id="parents-other-income"
+            name="otherIncome"
+            value={values.parentsAnnualIncome.otherIncome}
+            onChange={getParentsAnnualIncome}
+            required={false}
+          />
+        </InputWrapper>
+
+        <InputWrapper
+          heading="Parent's Information"
+          id="parent-information"
           columns="repeat(3, 1fr)"
         >
           <Input
             label="father's name"
             placeholder="father's complete name"
-            name="fathersName"
             id="fathers-name"
+            name="fathersName"
+            value={values.parentsInfo.fathersName}
+            onChange={getParentsInfo}
           />
           <Input
             label="occupation"
             placeholder="occupation"
-            name="fathersOccupation"
             id="fathers-occupation"
+            name="fathersOccupation"
+            value={values.parentsInfo.fathersOccupation}
+            onChange={getParentsInfo}
           />
-        </InputWrapper>
-
-        <InputWrapper
-          heading="Mother's Information"
-          id="mother-information"
-          columns="repeat(3, 1fr)"
-        >
           <Input
             label="mother's name"
             placeholder="mother's complete name"
-            name="mothersName"
             id="mothers-name"
+            name="mothersName"
+            value={values.parentsInfo.mothersName}
+            onChange={getParentsInfo}
           />
           <Input
             label="occupation"
             placeholder="occupation"
-            name="mothersOccupation"
             id="mothers-occupation"
+            name="mothersOccupation"
+            value={values.parentsInfo.mothersOccupation}
+            onChange={getParentsInfo}
           />
         </InputWrapper>
 
@@ -171,46 +395,89 @@ const PersonalInformation: React.FC<Props> = () => {
         >
           <Input
             label="complete name"
-            name="otherSupporterName"
             id="other-supporter-name"
+            name="completeName"
+            value={values.otherPersonSupport.completeName}
+            onChange={getOtherPersonSupport}
           />
           <Input
             label="occupation"
-            name="otherSupporterOccupation"
             id="other-supporter-occupation"
+            name="occupation"
+            value={values.otherPersonSupport.occupation}
+            onChange={getOtherPersonSupport}
           />
           <Input
             label="address"
-            name="otherSupporterAddress"
             id="other-supporter-address"
+            name="address"
+            value={values.otherPersonSupport.address}
+            onChange={getOtherPersonSupport}
           />
           <Input
             label="relationship"
-            name="otherSupporterRelationship"
             id="other-supporter-relationship"
+            name="relationship"
+            value={values.otherPersonSupport.relationship}
+            onChange={getOtherPersonSupport}
           />
         </InputWrapper>
 
         <InputWrapper
-          heading="Parent's Annual Income"
-          id="parents-income"
-          columns="repeat(2, 1fr)"
+          heading="Church Information"
+          id="church-information"
+          columns="repeat(6, 1fr)"
         >
           <Input
-            label="Annual Income"
-            name="parentsAnnualIncome"
-            id="parents-annual-income"
+            label="church name"
+            id="church-name"
+            name="churchName"
+            value={values.churchName}
+            onChange={handleOnChange}
           />
           <Input
-            label="Other Income"
-            placeholder="please specify"
-            name="parentsOtherIncome"
-            id="parents-other-income"
+            type="date"
+            label="date baptized"
+            id="date baptized"
+            name="dateBaptized"
+            value={values.dateBaptized}
+            onChange={handleOnChange}
+          />
+          <Input
+            label="church address"
+            id="church-address"
+            name="churchAddress"
+            value={values.churchAddress}
+            onChange={handleOnChange}
+          />
+          <Input
+            label="association"
+            id="association"
+            name="association"
+            value={values.association}
+            onChange={handleOnChange}
+            required={false}
+          />
+          <Input
+            label="church pastor name"
+            placeholder="church pastor complete name"
+            id="church-pastor"
+            name="churchPastorName"
+            value={values.churchPastorName}
+            onChange={handleOnChange}
+          />
+          <Input
+            type="number"
+            label="pastor contact number"
+            id="church-pastor-contact-number"
+            name="churchPastorContactNumber"
+            value={values.churchPastorContactNumber}
+            onChange={handleOnChange}
           />
         </InputWrapper>
       </StyledPersonalFieldWrapper>
-    </StyledTheologyEducational>
+    </StyledTheologySection>
   );
 };
 
-export default PersonalInformation;
+export default React.memo(PersonalInformation);

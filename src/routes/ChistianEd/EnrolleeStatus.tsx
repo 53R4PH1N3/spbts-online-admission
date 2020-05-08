@@ -15,7 +15,7 @@ const initialValues: EnrolleeStatusProps = {
     from: "",
     to: "",
   },
-  desiredCourse: "Bachelor of Arts in Theology",
+  desiredCourse: "Bachelor of Arts in Christian Education",
   yearLevel: "",
   schoolNameLastAttended: "",
 };

@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { StyledFormFieldWrapper } from "styles";
 
-export const StyledPersonalFieldWrapper = styled(StyledFormFieldWrapper)`
+export const StyledPersonalFieldWrapper = styled.div`
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: repeat(2, 1fr);
+
   #full-name {
     #suffix {
       width: 50%;
@@ -18,7 +21,14 @@ export const StyledPersonalFieldWrapper = styled(StyledFormFieldWrapper)`
     grid-column: 1 / 2;
 
     #birth-place {
-      grid-column: 1 / 3;
+      grid-column: 1 / -1;
+    }
+
+    #birth-date {
+    }
+
+    #age {
+      width: 50%;
     }
   }
 
@@ -31,19 +41,44 @@ export const StyledPersonalFieldWrapper = styled(StyledFormFieldWrapper)`
     }
   }
 
+  #church-information {
+    grid-column: 1 / -1;
+
+    #church-name {
+      grid-column: 1 / 3;
+    }
+
+    #denomination {
+    }
+
+    #church-address {
+      grid-column: 1 / 3;
+    }
+
+    #association {
+    }
+
+    #church-pastor {
+      grid-row: 1 / 2;
+      grid-column: 4 / 6;
+    }
+
+    #church-pastor-contact-number {
+      grid-row: 1 / 2;
+      grid-column: 6 / -1;
+    }
+  }
+
   #contact-information {
     #home-address {
       grid-column: 1 / -1;
     }
   }
 
-  #father-information {
+  #parent-information {
     #fathers-name {
       grid-column: 1 / 3;
     }
-  }
-
-  #mother-information {
     #mothers-name {
       grid-column: 1 / 3;
     }
@@ -59,7 +94,7 @@ export const StyledPersonalFieldWrapper = styled(StyledFormFieldWrapper)`
   }
 
   #parents-income {
-    grid-column: 1 / -1;
+    /* grid-column: 1 / -1; */
   }
 
   #student-type {

@@ -41,7 +41,8 @@ const Select: React.FC<SelectProps> = ({
     if (getSelectValue) {
       getSelectValue(value);
     }
-  }, [getSelectValue, value]);
+    // eslint-disable-next-line
+  }, [value]);
 
   return (
     <StyledSelectBox ref={selectRef}>

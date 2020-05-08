@@ -1,8 +1,8 @@
 import React from "react";
-import { CaretDownSVG, BackSVG } from "assets/icons";
+import { CaretDownSVG, BackSVG, SendSVG } from "assets/icons";
 
 export type SVGProps = {
-  icon: "caret-down" | "back";
+  icon: "caret-down" | "back" | "send";
 };
 
 const SVG: React.FC<SVGProps> = ({ icon }) => {
@@ -11,6 +11,8 @@ const SVG: React.FC<SVGProps> = ({ icon }) => {
       return <CaretDownSVG />;
     case "back":
       return <BackSVG />;
+    case "send":
+      return <SendSVG />;
   }
 };
 

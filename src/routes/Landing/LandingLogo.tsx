@@ -13,7 +13,7 @@ const LandingLogo: React.FC<Props> = () => {
     <StyledLandingLogoWrapper>
       <StyledLandingLogo src={logo} />
       <StyledLandingSchoolName>
-        Southern Philippine Baptist Theological Seminary, Inc.
+        Southern Philippines Baptist Theological Seminary, Inc.
       </StyledLandingSchoolName>
     </StyledLandingLogoWrapper>
   );

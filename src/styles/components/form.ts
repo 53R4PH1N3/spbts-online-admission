@@ -30,12 +30,6 @@ export const StyledFormHeader = styled.header`
   }
 `;
 
-export const StyledFormFieldWrapper = styled.div`
-  display: grid;
-  gap: 2.4rem;
-  grid-template-columns: repeat(2, 1fr);
-`;
-
 export const StyledFormHeading = styled.h3`
   width: 100%;
 
@@ -85,7 +79,7 @@ export const StyledFormInputContainer = styled.div<GridProps>`
 
 export const StyledFormRadioContainer = styled.div<{ disabled?: boolean }>`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 
   & > header {

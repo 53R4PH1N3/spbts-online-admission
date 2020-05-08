@@ -1,35 +1,40 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import {
   StyledInputBox,
-  StyledInput,
   StyledInputUnderline,
   StyledInputLabel,
+  StyledTextArea,
 } from "styles";
+import autosize from "autosize";
 
-type InputProps = {
-  label?: string;
-} & React.HTMLProps<HTMLInputElement>;
+type AreaProps = { label?: string } & React.HTMLProps<HTMLTextAreaElement>;
 
-const Input: React.FC<InputProps> = ({
+const TextArea: React.FC<AreaProps> = ({
   id,
-  type,
-  placeholder,
-  label,
-  className,
   name,
   value,
-  required,
-  readOnly,
+  label,
+  placeholder,
   disabled,
+  readOnly,
+  required,
   onChange,
 }) => {
+  const areaRef = useRef<HTMLTextAreaElement>(null);
+
   const inputId = id && `${id}_input`;
 
+  useEffect(() => {
+    if (areaRef.current) {
+      autosize(areaRef.current);
+    }
+  }, []);
+
   return (
-    <StyledInputBox id={id} className={className}>
-      <StyledInput
+    <StyledInputBox id={id}>
+      <StyledTextArea
+        as="textarea"
         id={inputId}
-        type={type}
         placeholder={placeholder ? placeholder : label}
         isLabeled={label != null}
         name={name}
@@ -37,6 +42,7 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         disabled={disabled}
         readOnly={readOnly}
+        ref={areaRef}
       />
       {label && (
         <StyledInputLabel htmlFor={inputId}>
@@ -51,9 +57,8 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-Input.defaultProps = {
-  type: "text",
+TextArea.defaultProps = {
   required: true,
 };
 
-export default React.memo(Input);
+export default React.memo(TextArea);

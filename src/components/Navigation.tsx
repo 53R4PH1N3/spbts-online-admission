@@ -20,7 +20,7 @@ const Navigation: React.FC<Props> = ({ history }) => {
       <StyledNavLogoWrapper to="/">
         <StyledNavLogo src={logo} />
         <StyledNavSchoolName>
-          Southern Philippine Baptist Theological Seminary, Inc.
+          Southern Philippines Baptist Theological Seminary, Inc.
         </StyledNavSchoolName>
       </StyledNavLogoWrapper>
 

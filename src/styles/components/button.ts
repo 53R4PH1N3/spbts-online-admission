@@ -47,6 +47,26 @@ export const StyledButtonNormal = styled.button`
 
 export const StyledButtonPrimary = styled.button`
   ${ButtonStyles};
+  box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.16);
+
+  ${(p) =>
+    p.disabled &&
+    css`
+      color: var(--color-disabled-text) !important;
+      border-color: var(--color-border-primary) !important;
+      background-color: var(--color-bg-tertiary) !important;
+      box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.16) !important;
+    `}
+
+  &:hover,
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.16);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.16);
+  }
 
   color: var(--color-bg-primary);
   border-color: var(--color-primary);

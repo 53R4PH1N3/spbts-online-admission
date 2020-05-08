@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "react-router-dom";
-import { Landing, Theology } from "routes";
+import { Landing, Theology, ChristianEducation } from "routes";
 
 export type RouteProps = {
   exact: boolean;
@@ -17,5 +17,10 @@ export const routes: RouteProps[] = [
     exact: true,
     path: "/ab-theology",
     component: Theology,
+  },
+  {
+    exact: true,
+    path: "/ab-christian-education",
+    component: ChristianEducation,
   },
 ];

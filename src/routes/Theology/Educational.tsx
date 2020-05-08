@@ -1,104 +1,223 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
-  StyledTheologyEducational,
-  StyledEducationalHeader,
+  StyledTheologySection,
+  StyledTheologySectionHeader,
   StyledEducationalFieldWrapper,
 } from "styles";
 import { InputWrapper, Input } from "components";
+import { EducationalProps } from "routes";
+import { useForm } from "hooks";
 
-type Props = {};
+const initialValues: EducationalProps = {
+  elementary: {
+    schoolName: "",
+    yearGraduated: "",
+  },
 
-const EducationalBackground: React.FC<Props> = () => {
+  jhSchool: {
+    schoolName: "",
+    yearGraduated: "",
+  },
+
+  shSchool: {
+    schoolName: "",
+    yearGraduated: "",
+  },
+
+  college: {
+    schoolName: "",
+    courseTaken: "",
+    yearGraduated: "",
+  },
+
+  specialSkills: "",
+};
+
+type Props = {
+  getValues?: (values: EducationalProps) => void;
+};
+
+const EducationalBackground: React.FC<Props> = ({ getValues }) => {
+  const { values, setValues, handleOnChange } = useForm<EducationalProps>({
+    initialValues,
+  });
+
+  const getElementaryValues = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        elementary: {
+          ...prevState.elementary,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  const getJHSchoolValues = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        jhSchool: {
+          ...prevState.jhSchool,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  const getSHSchoolValues = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        shSchool: {
+          ...prevState.shSchool,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  const getCollegeValues = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        college: {
+          ...prevState.college,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
+  useEffect(() => {
+    if (getValues) {
+      getValues(values);
+    }
+    // eslint-disable-next-line
+  }, [values]);
+
   return (
-    <StyledTheologyEducational>
-      <StyledEducationalHeader>
+    <StyledTheologySection>
+      <StyledTheologySectionHeader>
         <h2>Educational Background</h2>
-      </StyledEducationalHeader>
+      </StyledTheologySectionHeader>
 
       <StyledEducationalFieldWrapper>
-        <InputWrapper
-          heading="primary education"
-          id="primary-education"
-          columns="1fr 20rem"
-        >
+        <InputWrapper heading="elementary" id="elementary" columns="1fr 20rem">
           <Input
             label="school name"
-            name="primarySchoolName"
-            id="primary-school-name"
+            id="elementary-school-name"
+            name="schoolName"
+            value={values.elementary.schoolName}
+            onChange={getElementaryValues}
           />
           <Input
             type="number"
             label="year graduated"
-            name="primaryYearGraduated"
-            id="primary-year-graduated"
+            id="elementary-year-graduated"
+            name="yearGraduated"
+            value={values.elementary.yearGraduated}
+            onChange={getElementaryValues}
           />
         </InputWrapper>
 
         <InputWrapper
-          heading="intermediate education"
-          id="intermediate-education"
+          heading="junior high school"
+          id="junior-high-school"
           columns="1fr 20rem"
         >
           <Input
             label="school name"
-            name="intermediateSchoolName"
-            id="intermediate-school-name"
+            id="jh-school-name"
+            name="schoolName"
+            value={values.jhSchool.schoolName}
+            onChange={getJHSchoolValues}
           />
           <Input
             type="number"
             label="year graduated"
-            name="intermediateYearGraduated"
-            id="intermediate-year-graduated"
+            id="jh-year-graduated"
+            name="yearGraduated"
+            value={values.jhSchool.yearGraduated}
+            onChange={getJHSchoolValues}
           />
         </InputWrapper>
 
         <InputWrapper
-          heading="secondary education"
-          id="secondary-education"
+          heading="senior high school"
+          id="senior-high-school"
           columns="1fr 20rem"
         >
           <Input
             label="school name"
-            name="secondarySchoolName"
-            id="secondary-school-name"
+            id="sh-school-name"
+            name="schoolName"
+            value={values.shSchool.schoolName}
+            onChange={getSHSchoolValues}
           />
           <Input
             type="number"
             label="year graduated"
-            name="secondaryYearGraduated"
-            id="secondary-year-graduated"
+            id="sh-year-graduated"
+            name="yearGraduated"
+            value={values.shSchool.yearGraduated}
+            onChange={getSHSchoolValues}
           />
         </InputWrapper>
 
         <InputWrapper
-          heading="college education"
-          id="college-education"
+          heading="college last attended"
+          id="college-attended"
           columns="repeat(2, 1fr) 20rem"
         >
           <Input
             label="school name"
-            name="collegeSchoolName"
             id="college-school-name"
+            name="schoolName"
+            value={values.college.schoolName}
+            onChange={getCollegeValues}
+            required={false}
           />
           <Input
             label="course taken"
-            name="collegeCourse"
             id="college-course-taken"
+            name="courseTaken"
+            value={values.college.courseTaken}
+            onChange={getCollegeValues}
+            required={false}
           />
           <Input
             type="number"
             label="year graduated"
-            name="collegeYearGraduated"
             id="college-year-graduated"
+            name="yearGraduated"
+            value={values.college.yearGraduated}
+            onChange={getCollegeValues}
+            required={false}
           />
         </InputWrapper>
 
         <InputWrapper heading="special skills & abilities" id="special-skills">
-          <Input label="skills & abilities" placeholder="please specify" />
+          <Input
+            label="skills & abilities"
+            placeholder="please specify"
+            name="specialSkills"
+            value={values.specialSkills}
+            onChange={handleOnChange}
+          />
         </InputWrapper>
       </StyledEducationalFieldWrapper>
-    </StyledTheologyEducational>
+    </StyledTheologySection>
   );
 };
 
-export default EducationalBackground;
+export default React.memo(EducationalBackground);
