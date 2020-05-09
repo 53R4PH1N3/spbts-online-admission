@@ -164,7 +164,7 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
             onChange={handleOnChange}
           />
           <Input
-            label="Name of School Last SY. Attended"
+            label="Name of School Last S.Y. Attended"
             id="school-last-attended"
             name="schoolNameLastAttended"
             value={values.schoolNameLastAttended}

@@ -1,11 +1,23 @@
 export type EnrolleeStatusProps = {
   typeOfStudent: string;
-  semester: string;
+
+  semester?: string;
+
   schoolYear: {
     from: string;
     to: string;
   };
-  desiredCourse: string;
-  yearLevel: string;
-  schoolNameLastAttended: string;
+  lastSchoolYearAttended?: {
+    from?: string;
+    to?: string;
+  };
+
+  desiredCourse?: string;
+  educationLevel?: string;
+
+  yearLevel?: string;
+  gradeLevel?: string;
+
+  schoolNameLastAttended?: string;
+  section?: string;
 };

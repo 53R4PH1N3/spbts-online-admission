@@ -37,6 +37,11 @@ export const StyledInput = styled.input<InputProps>`
     &::-webkit-inner-spin-button {
       display: none;
     }
+
+    &::-webkit-clear-button {
+      margin-right: 0.4rem;
+      padding-bottom: 2px;
+    }
   }
 
   &::placeholder {

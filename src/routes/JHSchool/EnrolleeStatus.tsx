@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import {
   StyledTheologySection,
   StyledTheologySectionHeader,
-  StyledEnrolleeFieldWrapper,
+  StyledBasicEdFieldWrapper,
 } from "styles";
 import { InputWrapper, Input, RadioWrapper, Radio } from "components";
 import { EnrolleeStatusProps } from "routes";
@@ -10,14 +10,17 @@ import { useForm } from "hooks";
 
 const initialValues: EnrolleeStatusProps = {
   typeOfStudent: "",
-  semester: "",
   schoolYear: {
     from: "",
     to: "",
   },
-  desiredCourse: "Bachelor of Arts in Theology",
-  yearLevel: "",
-  schoolNameLastAttended: "",
+  lastSchoolYearAttended: {
+    from: "",
+    to: "",
+  },
+  educationLevel: "Junior High School",
+  gradeLevel: "",
+  section: "",
 };
 
 type Props = {
@@ -50,13 +53,27 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
     [setValues]
   );
 
+  const onChangeLastSchoolYear = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setValues((prevState) => ({
+        ...prevState,
+        lastSchoolYearAttended: {
+          ...prevState.lastSchoolYearAttended,
+          [name]: value,
+        },
+      }));
+    },
+    [setValues]
+  );
+
   return (
     <StyledTheologySection>
       <StyledTheologySectionHeader>
         <h2>Enrollee Status</h2>
       </StyledTheologySectionHeader>
 
-      <StyledEnrolleeFieldWrapper>
+      <StyledBasicEdFieldWrapper>
         <RadioWrapper id="type-of-student" heading="What type student are you?">
           <Radio
             label="New Student"
@@ -68,12 +85,6 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
             label="Returning Student"
             name="typeOfStudent"
             value="Returning Student"
-            onChange={handleOnChange}
-          />
-          <Radio
-            label="Cross Enrollee"
-            name="typeOfStudent"
-            value="Cross Enrollee"
             onChange={handleOnChange}
           />
           <Radio
@@ -92,27 +103,6 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
             label="Foreigner"
             name="typeOfStudent"
             value="Foreigner"
-            onChange={handleOnChange}
-          />
-        </RadioWrapper>
-
-        <RadioWrapper id="semester" heading="Semester">
-          <Radio
-            label="1st"
-            name="semester"
-            value="1st"
-            onChange={handleOnChange}
-          />
-          <Radio
-            label="2nd"
-            name="semester"
-            value="2st"
-            onChange={handleOnChange}
-          />
-          <Radio
-            label="Summer"
-            name="semester"
-            value="Summer"
             onChange={handleOnChange}
           />
         </RadioWrapper>
@@ -143,36 +133,60 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
         </InputWrapper>
 
         <InputWrapper
-          heading="Desired Course"
+          heading="Last School Year Attended"
+          id="last-school-year"
+          columns="repeat(2, 1fr)"
+        >
+          <Input
+            type="number"
+            label="From"
+            placeholder="year"
+            id="last-from-year"
+            name="from"
+            value={values.lastSchoolYearAttended?.from}
+            onChange={onChangeLastSchoolYear}
+          />
+          <Input
+            type="number"
+            label="To"
+            placeholder="year"
+            id="last-to-year"
+            name="to"
+            value={values.lastSchoolYearAttended?.to}
+            onChange={onChangeLastSchoolYear}
+          />
+        </InputWrapper>
+
+        <InputWrapper
+          heading="Current Education"
           id="desired-course"
           columns="repeat(6, 1fr)"
         >
           <Input
-            label="Course Name"
+            label="Education Level"
             id="course-name"
-            name="desiredCourse"
-            value={values.desiredCourse}
+            name="educationLevel"
+            value={values.educationLevel}
             onChange={handleOnChange}
             readOnly
           />
           <Input
             type="number"
-            id="year-level"
-            label="Year Level"
-            name="yearLevel"
-            value={values.yearLevel}
+            id="grade-level"
+            label="grade level"
+            name="gradeLevel"
+            value={values.gradeLevel}
             onChange={handleOnChange}
           />
           <Input
-            label="Name of School Last S.Y. Attended"
-            id="school-last-attended"
-            name="schoolNameLastAttended"
-            value={values.schoolNameLastAttended}
+            label="Section"
+            id="section"
+            name="section"
+            value={values.section}
             onChange={handleOnChange}
-            required={false}
           />
         </InputWrapper>
-      </StyledEnrolleeFieldWrapper>
+      </StyledBasicEdFieldWrapper>
     </StyledTheologySection>
   );
 };

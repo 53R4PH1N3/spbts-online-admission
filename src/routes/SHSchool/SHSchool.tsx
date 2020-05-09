@@ -10,34 +10,28 @@ import {
   StyledButtonPrimary,
 } from "styles";
 import { Navigation, Checkbox, SVG } from "components";
+import { EnrolleeStatusProps, PersonalProps, EducationalProps } from "routes";
 
-import {
-  EnrolleeStatusProps,
-  PersonalProps,
-  EducationalProps,
-  TestimonyProps,
-  Testimony,
-  EducationalBackground,
-  PersonalInformation,
-} from "routes";
 import EnrolleeStatus from "./EnrolleeStatus";
+import PersonalInformation from "./Personal";
+import EducationalBackground from "./Educational";
 
 type Props = {} & RouteComponentProps;
 
-const state: EnrolleeStatusProps &
-  PersonalProps &
-  EducationalProps &
-  TestimonyProps = {
+const state: EnrolleeStatusProps & PersonalProps & EducationalProps = {
   // EnrolleeStatus
   typeOfStudent: "",
-  semester: "",
   schoolYear: {
     from: "",
     to: "",
   },
-  desiredCourse: "",
-  yearLevel: "",
-  schoolNameLastAttended: "",
+  lastSchoolYearAttended: {
+    from: "",
+    to: "",
+  },
+  educationLevel: "",
+  gradeLevel: "",
+  section: "",
 
   // Personal Information
   firstName: "",
@@ -46,8 +40,6 @@ const state: EnrolleeStatusProps &
   suffix: "",
 
   gender: "",
-  civilStatus: "",
-  spouseName: "",
 
   birthPlace: "",
   birthDate: "",
@@ -75,19 +67,8 @@ const state: EnrolleeStatusProps &
     mothersOccupation: "",
   },
 
-  otherPersonSupport: {
-    completeName: "",
-    occupation: "",
-    address: "",
-    relationship: "",
-  },
-
-  churchName: "",
-  dateBaptized: "",
-  churchAddress: "",
-  association: "",
-  churchPastorName: "",
-  churchPastorContactNumber: "",
+  scholarship: "",
+  scholarshipAmmout: "",
 
   // Educational Information
   elementary: {
@@ -100,25 +81,15 @@ const state: EnrolleeStatusProps &
     yearGraduated: "",
   },
 
-  shSchool: {
-    schoolName: "",
-    yearGraduated: "",
+  authorizedPersons: {
+    person1Name: "",
+    person1Relationship: "",
+    person2Name: "",
+    person2Relationship: "",
   },
-
-  college: {
-    schoolName: "",
-    courseTaken: "",
-    yearGraduated: "",
-  },
-
-  specialSkills: "",
-
-  // Testimony
-  salvationTestimony: "",
-  purposeOfEnrolling: "",
 };
 
-const ChristianEducation: React.FC<Props> = () => {
+const SHSchool: React.FC<Props> = () => {
   const [isCertifyTrue, setCertifyTrue] = useState(false);
 
   const [values, setValues] = useState<typeof state>(state);
@@ -145,7 +116,7 @@ const ChristianEducation: React.FC<Props> = () => {
       <StyledTheologyContainer>
         <StyledForm>
           <StyledFormHeader>
-            <h1>Pre-Admission Form</h1>
+            <h1>Admission Form</h1>
             <p>
               Please fill all necessary information with love and with all your
               honesty.
@@ -157,8 +128,6 @@ const ChristianEducation: React.FC<Props> = () => {
           <PersonalInformation getValues={getAllDataCallback} />
 
           <EducationalBackground getValues={getAllDataCallback} />
-
-          <Testimony getValues={getAllDataCallback} />
 
           <StyledTheologyCheckboxWrapper>
             <Checkbox
@@ -185,4 +154,4 @@ const ChristianEducation: React.FC<Props> = () => {
   );
 };
 
-export default ChristianEducation;
+export default SHSchool;

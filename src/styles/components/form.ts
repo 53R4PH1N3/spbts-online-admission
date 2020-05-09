@@ -52,6 +52,9 @@ export const StyledFormHeading = styled.h3`
 `;
 
 export const StyledFormInputContainer = styled.div<GridProps>`
+  width: 100%;
+  height: max-content;
+
   display: grid;
   row-gap: .4rem;
   column-gap: 2rem;

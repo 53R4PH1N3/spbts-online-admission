@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { routes } from "config";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { Preloader } from "components";
+import { routes } from "config";
 
 function App() {
   return (

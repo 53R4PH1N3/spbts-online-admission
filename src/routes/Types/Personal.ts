@@ -5,7 +5,7 @@ export type PersonalProps = {
   suffix?: string;
 
   gender: string;
-  civilStatus: string;
+  civilStatus?: string;
   spouseName?: string;
 
   birthPlace: string;
@@ -34,17 +34,20 @@ export type PersonalProps = {
     mothersOccupation: string;
   };
 
-  otherPersonSupport: {
-    completeName: string;
-    occupation: string;
-    address: string;
-    relationship: string;
+  otherPersonSupport?: {
+    completeName?: string;
+    occupation?: string;
+    address?: string;
+    relationship?: string;
   };
 
-  churchName: string;
-  dateBaptized: string;
-  churchAddress: string;
+  scholarship?: string;
+  scholarshipAmmout?: string;
+
+  churchName?: string;
+  dateBaptized?: string;
+  churchAddress?: string;
   association?: string;
-  churchPastorName: string;
-  churchPastorContactNumber: string;
+  churchPastorName?: string;
+  churchPastorContactNumber?: string;
 };

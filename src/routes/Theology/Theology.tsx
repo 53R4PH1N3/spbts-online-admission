@@ -36,7 +36,7 @@ const state: EnrolleeStatusProps &
     from: "",
     to: "",
   },
-  desiredCourse: "Bachelor of Arts in Theology",
+  desiredCourse: "",
   yearLevel: "",
   schoolNameLastAttended: "",
 

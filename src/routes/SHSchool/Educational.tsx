@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import {
   StyledTheologySection,
   StyledTheologySectionHeader,
-  StyledEducationalFieldWrapper,
+  StyledBasicEdEducationalFieldWrapper,
 } from "styles";
 import { InputWrapper, Input } from "components";
 import { EducationalProps } from "routes";
@@ -19,18 +19,12 @@ const initialValues: EducationalProps = {
     yearGraduated: "",
   },
 
-  shSchool: {
-    schoolName: "",
-    yearGraduated: "",
+  authorizedPersons: {
+    person1Name: "",
+    person1Relationship: "",
+    person2Name: "",
+    person2Relationship: "",
   },
-
-  college: {
-    schoolName: "",
-    courseTaken: "",
-    yearGraduated: "",
-  },
-
-  specialSkills: "",
 };
 
 type Props = {
@@ -38,7 +32,7 @@ type Props = {
 };
 
 const EducationalBackground: React.FC<Props> = ({ getValues }) => {
-  const { values, setValues, handleOnChange } = useForm<EducationalProps>({
+  const { values, setValues } = useForm<EducationalProps>({
     initialValues,
   });
 
@@ -70,27 +64,13 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
     [setValues]
   );
 
-  const getSHSchoolValues = useCallback(
+  const getAuthorizedPersonsValues = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
       setValues((prevState) => ({
         ...prevState,
-        shSchool: {
-          ...prevState.shSchool,
-          [name]: value,
-        },
-      }));
-    },
-    [setValues]
-  );
-
-  const getCollegeValues = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setValues((prevState) => ({
-        ...prevState,
-        college: {
-          ...prevState.college,
+        authorizedPersons: {
+          ...prevState.authorizedPersons,
           [name]: value,
         },
       }));
@@ -111,7 +91,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
         <h2>Educational Background</h2>
       </StyledTheologySectionHeader>
 
-      <StyledEducationalFieldWrapper>
+      <StyledBasicEdEducationalFieldWrapper>
         <InputWrapper
           heading="elementary"
           id="elementary"
@@ -157,70 +137,40 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
         </InputWrapper>
 
         <InputWrapper
-          heading="senior high school"
-          id="senior-high-school"
-          columns="repeat(3, 1fr)"
+          heading="Authorized person/s to have an access your school records"
+          id="authorized-persons"
+          columns="repeat(6, 1fr)"
         >
           <Input
-            label="school name"
-            id="sh-school-name"
-            name="schoolName"
-            value={values.shSchool?.schoolName}
-            onChange={getSHSchoolValues}
+            label="complete name"
+            id="authorized-person-name-1"
+            name="person1Name"
+            value={values.authorizedPersons?.person1Name}
+            onChange={getAuthorizedPersonsValues}
           />
           <Input
-            type="number"
-            label="year graduated"
-            id="sh-year-graduated"
-            name="yearGraduated"
-            value={values.shSchool?.yearGraduated}
-            onChange={getSHSchoolValues}
+            label="relationship"
+            id="authorized-person-relationship-1"
+            name="person1Relationship"
+            value={values.authorizedPersons?.person1Relationship}
+            onChange={getAuthorizedPersonsValues}
+          />
+          <Input
+            label="complete name"
+            id="authorized-person-name-2"
+            name="person2Name"
+            value={values.authorizedPersons?.person2Name}
+            onChange={getAuthorizedPersonsValues}
+          />
+          <Input
+            label="relationship"
+            id="authorized-person-relationship-2"
+            name="person2Relationship"
+            value={values.authorizedPersons?.person2Relationship}
+            onChange={getAuthorizedPersonsValues}
           />
         </InputWrapper>
-
-        <InputWrapper
-          heading="college last attended"
-          id="college-attended"
-          columns="repeat(2, 1fr) 20rem"
-        >
-          <Input
-            label="school name"
-            id="college-school-name"
-            name="schoolName"
-            value={values.college?.schoolName}
-            onChange={getCollegeValues}
-            required={false}
-          />
-          <Input
-            label="course taken"
-            id="college-course-taken"
-            name="courseTaken"
-            value={values.college?.courseTaken}
-            onChange={getCollegeValues}
-            required={false}
-          />
-          <Input
-            type="number"
-            label="year graduated"
-            id="college-year-graduated"
-            name="yearGraduated"
-            value={values.college?.yearGraduated}
-            onChange={getCollegeValues}
-            required={false}
-          />
-        </InputWrapper>
-
-        <InputWrapper heading="special skills & abilities" id="special-skills">
-          <Input
-            label="skills & abilities"
-            placeholder="please specify"
-            id="special-skills"
-            name="specialSkills"
-            value={values?.specialSkills}
-            onChange={handleOnChange}
-          />
-        </InputWrapper>
-      </StyledEducationalFieldWrapper>
+      </StyledBasicEdEducationalFieldWrapper>
     </StyledTheologySection>
   );
 };
