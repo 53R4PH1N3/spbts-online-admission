@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import media from "styles/media";
 
 export const StyledLandingLogoWrapper = styled.div`
   width: 100%;
@@ -11,6 +12,14 @@ export const StyledLandingLogoWrapper = styled.div`
   user-select: none;
 
   position: relative;
+
+  ${media.mobileSm} {
+    column-gap: 2rem;
+  }
+
+  ${media.mobileXs} {
+    column-gap: 1.6rem;
+  }
 
   &::after {
     content: "";

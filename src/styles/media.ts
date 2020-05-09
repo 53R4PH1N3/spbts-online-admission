@@ -34,10 +34,10 @@ const media: MediaSizes = {
   mobileXs: 320,
 };
 
-Object.keys(media).forEach((key) => {
+Object.keys(media).forEach(key => {
   const query = media[key] / 16;
   media[key] = `@media screen and 
                 (max-width: ${query}em)`;
 });
 
-export { media };
+export default media;

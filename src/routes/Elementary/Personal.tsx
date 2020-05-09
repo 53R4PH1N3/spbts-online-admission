@@ -58,8 +58,8 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   });
 
   const getGenderValue = useCallback(
-    (value) => {
-      setValues((prevState) => ({
+    value => {
+      setValues(prevState => ({
         ...prevState,
         gender: value,
       }));
@@ -70,7 +70,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   const getParentsAnnualIncome = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         parentsAnnualIncome: {
           ...prevState.parentsAnnualIncome,
@@ -84,7 +84,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   const getParentsInfo = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         parentsInfo: {
           ...prevState.parentsInfo,
@@ -154,7 +154,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           <Select
             label="gender"
             options={genderTypes}
-            getSelectValue={(value) => {
+            getSelectValue={value => {
               getGenderValue(value);
             }}
           />
@@ -211,7 +211,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           />
           <Input
             label="ethnic affiliation"
-            placeholder="Ex. Cebuano / Muslim / etc."
+            placeholder="Ex. Cebuano / etc."
             id="ethnic"
             name="ethnicAffiliation"
             value={values.ethnicAffiliation}
@@ -219,7 +219,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           />
           <Input
             label="religion"
-            placeholder="Ex. Southern Baptist / Alliance / Pentecostal / Etc.."
+            placeholder="Ex. Southern Baptist / Etc."
             id="religion"
             name="religion"
             value={values.religion}

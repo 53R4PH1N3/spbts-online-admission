@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import { StyledButtonNormal } from "./button";
 import { Link } from "react-router-dom";
+import media from "styles/media";
 
 export const StyledNav = styled.nav`
   width: 100%;
@@ -13,6 +14,23 @@ export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${media.laptopSm} {
+    padding: 0 4.8rem;
+  }
+
+  ${media.tabletLg} {
+    padding: 0 4rem;
+  }
+
+  ${media.tabletSm} {
+    padding: 0 2.4rem;
+  }
+
+  ${media.mobileMd} {
+    height: 8rem;
+    padding: 0 2rem;
+  }
 
   &::after {
     content: "";
@@ -37,6 +55,11 @@ export const StyledNavSchoolName = styled.h3`
   font-weight: 500;
   font-family: "Lora", serif;
   color: currentColor;
+
+  ${media.mobileMd} {
+    font-size: 1.4rem;
+    width: 16rem;
+  }
 `;
 
 export const StyledNavLogoWrapper = styled(Link)`
@@ -57,4 +80,14 @@ export const StyledNavLogoWrapper = styled(Link)`
   }
 `;
 
-export const StyledNavBackButton = styled(StyledButtonNormal)``;
+export const StyledNavBackButton = styled(StyledButtonNormal)`
+  ${media.tabletSm} {
+    & > span {
+      display: none;
+    }
+
+    & > svg {
+      margin-right: -0.5rem;
+    }
+  }
+`;

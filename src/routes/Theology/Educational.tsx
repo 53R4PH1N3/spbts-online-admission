@@ -45,7 +45,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
   const getElementaryValues = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         elementary: {
           ...prevState.elementary,
@@ -59,7 +59,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
   const getJHSchoolValues = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         jhSchool: {
           ...prevState.jhSchool,
@@ -73,7 +73,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
   const getSHSchoolValues = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         shSchool: {
           ...prevState.shSchool,
@@ -87,7 +87,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
   const getCollegeValues = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         college: {
           ...prevState.college,
@@ -181,7 +181,7 @@ const EducationalBackground: React.FC<Props> = ({ getValues }) => {
         <InputWrapper
           heading="college last attended"
           id="college-attended"
-          columns="repeat(2, 1fr) 20rem"
+          columns="repeat(3, 1fr)"
         >
           <Input
             label="school name"

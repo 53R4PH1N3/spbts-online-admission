@@ -77,8 +77,8 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   });
 
   const getGenderValue = useCallback(
-    (value) => {
-      setValues((prevState) => ({
+    value => {
+      setValues(prevState => ({
         ...prevState,
         gender: value,
       }));
@@ -87,8 +87,8 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   );
 
   const getCivilStatusValue = useCallback(
-    (value) => {
-      setValues((prevState) => ({
+    value => {
+      setValues(prevState => ({
         ...prevState,
         civilStatus: value,
       }));
@@ -99,7 +99,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   const getParentsAnnualIncome = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         parentsAnnualIncome: {
           ...prevState.parentsAnnualIncome,
@@ -113,7 +113,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   const getParentsInfo = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         parentsInfo: {
           ...prevState.parentsInfo,
@@ -127,7 +127,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
   const getOtherPersonSupport = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         otherPersonSupport: {
           ...prevState.otherPersonSupport,
@@ -197,23 +197,26 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           <Select
             label="gender"
             options={genderTypes}
-            getSelectValue={(value) => {
+            getSelectValue={value => {
               getGenderValue(value);
             }}
           />
           <Select
             label="civil status"
             options={civilStatus}
-            getSelectValue={(value) => {
+            getSelectValue={value => {
               getCivilStatusValue(value);
             }}
           />
 
-          {values.civilStatus === "Married" && (
+          {values.civilStatus !== "Married" && (
             <Input
               label="Spouse Name"
-              placeholder="Spouse Complete Name"
+              placeholder="Complete Name"
+              id="spouse-name"
               name="spouseName"
+              value={values.spouseName}
+              onChange={handleOnChange}
             />
           )}
         </InputWrapper>
@@ -269,7 +272,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           />
           <Input
             label="ethnic affiliation"
-            placeholder="Ex. Cebuano / Muslim / etc."
+            placeholder="Ex. Cebuano / etc."
             id="ethnic"
             name="ethnicAffiliation"
             value={values.ethnicAffiliation}
@@ -277,7 +280,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           />
           <Input
             label="religion"
-            placeholder="Ex. Southern Baptist / Alliance / Pentecostal / Etc.."
+            placeholder="Ex. Southern Baptist / Etc.."
             id="religion"
             name="religion"
             value={values.religion}
@@ -438,7 +441,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           <Input
             type="date"
             label="date baptized"
-            id="date baptized"
+            id="date-baptized"
             name="dateBaptized"
             value={values.dateBaptized}
             onChange={handleOnChange}
@@ -469,6 +472,7 @@ const PersonalInformation: React.FC<Props> = ({ getValues }) => {
           <Input
             type="number"
             label="pastor contact number"
+            placeholder="contact number"
             id="church-pastor-contact-number"
             name="churchPastorContactNumber"
             value={values.churchPastorContactNumber}

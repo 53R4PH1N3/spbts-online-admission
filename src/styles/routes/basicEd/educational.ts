@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { StyledEducationalFieldWrapper } from "..";
+import media from "styles/media";
+import { StyledFormInputWrapper } from "styles";
 
 export const StyledBasicEdEducationalFieldWrapper = styled(
   StyledEducationalFieldWrapper
@@ -13,6 +15,28 @@ export const StyledBasicEdEducationalFieldWrapper = styled(
 
     #authorized-person-name-2 {
       grid-column: 4 / 6;
+    }
+
+    ${media.tabletXl} {
+      ${StyledFormInputWrapper} {
+        grid-template-columns: repeat(3, 1fr);
+
+        #authorized-person-name-2 {
+          grid-column: 1 / 3;
+        }
+      }
+    }
+
+    ${media.tabletMd} {
+      ${StyledFormInputWrapper} {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    ${media.tabletSm} {
+      ${StyledFormInputWrapper} {
+        column-gap: 1.6rem;
+      }
     }
   }
 `;

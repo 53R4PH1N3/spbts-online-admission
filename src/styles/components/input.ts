@@ -15,10 +15,10 @@ export const StyledInput = styled.input<InputProps>`
   outline: none;
   border-radius: 0.3rem;
   border: 1px solid transparent;
-  border-color: ${(p) =>
+  border-color: ${p =>
     !p.isLabeled ? "var(--color-border-primary)" : "var(--color-bg-tertiary)"};
 
-  background-color: ${(p) =>
+  background-color: ${p =>
     p.disabled ? "var(--color-bg-secondary)" : "var(--color-bg-tertiary)"};
 
   &[type="text"] {
@@ -39,8 +39,7 @@ export const StyledInput = styled.input<InputProps>`
     }
 
     &::-webkit-clear-button {
-      margin-right: 0.4rem;
-      padding-bottom: 2px;
+      display: none;
     }
   }
 
@@ -52,6 +51,8 @@ export const StyledInput = styled.input<InputProps>`
 `;
 
 export const StyledInputLabel = styled.label`
+  width: max-content;
+
   font-size: 1rem;
   font-weight: 700;
   text-transform: capitalize;

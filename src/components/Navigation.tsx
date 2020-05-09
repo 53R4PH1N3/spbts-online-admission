@@ -26,7 +26,7 @@ const Navigation: React.FC<Props> = ({ history }) => {
 
       <StyledNavBackButton onClick={() => history.goBack()}>
         <SVG icon="back" />
-        Back
+        <span>Back</span>
       </StyledNavBackButton>
     </StyledNav>
   );

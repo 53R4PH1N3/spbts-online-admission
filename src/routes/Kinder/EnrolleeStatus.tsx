@@ -42,7 +42,7 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
   const onChangeSchoolYear = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         schoolYear: {
           ...prevState.schoolYear,
@@ -56,7 +56,7 @@ const EnrolleeStatus: React.FC<Props> = ({ getValues }) => {
   const onChangeLastSchoolYear = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      setValues((prevState) => ({
+      setValues(prevState => ({
         ...prevState,
         lastSchoolYearAttended: {
           ...prevState.lastSchoolYearAttended,

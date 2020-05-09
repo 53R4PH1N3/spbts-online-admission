@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import media from "styles/media";
 
 export const StyledLanding = styled.div`
   width: 100%;
@@ -27,6 +28,18 @@ export const StyledLandingContainer = styled.main`
 
   position: relative;
   overflow: hidden;
+
+  ${media.mobileLg} {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+
+    border-radius: 0;
+  }
+
+  ${media.mobileSm} {
+    padding: 1rem 2rem;
+  }
 
   &::before {
     content: "";
