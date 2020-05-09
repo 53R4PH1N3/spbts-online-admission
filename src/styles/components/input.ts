@@ -15,10 +15,10 @@ export const StyledInput = styled.input<InputProps>`
   outline: none;
   border-radius: 0.3rem;
   border: 1px solid transparent;
-  border-color: ${p =>
+  border-color: ${(p) =>
     !p.isLabeled ? "var(--color-border-primary)" : "var(--color-bg-tertiary)"};
 
-  background-color: ${p =>
+  background-color: ${(p) =>
     p.disabled ? "var(--color-bg-secondary)" : "var(--color-bg-tertiary)"};
 
   &[type="text"] {
@@ -59,7 +59,7 @@ export const StyledInputLabel = styled.label`
   margin-bottom: 0.4rem;
 
   & > span {
-    color: var(--color-pink);
+    color: var(--color-primary);
     margin-left: 4px;
   }
 
