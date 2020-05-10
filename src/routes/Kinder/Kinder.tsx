@@ -656,7 +656,7 @@ const Kinder: React.FC<Props> = () => {
                   <Radio
                     label="LAND BANK OF THE PHILIPPINES"
                     name="paymentBank"
-                    value="LAND_BANK"
+                    value="LAND BANK OF THE PHILIPPINES"
                     ref={register({ required: true })}
                   />
                   <Radio
