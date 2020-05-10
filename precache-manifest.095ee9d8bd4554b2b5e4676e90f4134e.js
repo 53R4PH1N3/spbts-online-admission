@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e51b37ee11e09ab8b6c8aa496f0c1abe",
+    "revision": "2dcac6be0db64fbc3de0b3b2804e51e9",
     "url": "/spbts-online-admission/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spbts-online-admission/static/css/2.190caba9.chunk.css"
   },
   {
-    "revision": "33d31e66b1aae66cfa06",
+    "revision": "f938a714ecc3adc72fac",
     "url": "/spbts-online-admission/static/css/main.5e7f52e6.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spbts-online-admission/static/js/2.cb1fe905.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "05e29d169f787254f5d6",
-    "url": "/spbts-online-admission/static/js/3.3fd69192.chunk.js"
+    "revision": "abc57ea10601b60dedb2",
+    "url": "/spbts-online-admission/static/js/3.e7ed8739.chunk.js"
   },
   {
     "revision": "f7a4f884c309feb51b8a",
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spbts-online-admission/static/js/8.2b10866d.chunk.js"
   },
   {
-    "revision": "33d31e66b1aae66cfa06",
-    "url": "/spbts-online-admission/static/js/main.94be045b.chunk.js"
+    "revision": "f938a714ecc3adc72fac",
+    "url": "/spbts-online-admission/static/js/main.ad5f9ec5.chunk.js"
   },
   {
-    "revision": "4eae87c467c2c2fd4848",
-    "url": "/spbts-online-admission/static/js/runtime-main.271b2da0.js"
+    "revision": "0a0e0a3426cd22b9d4cf",
+    "url": "/spbts-online-admission/static/js/runtime-main.2790f516.js"
   },
   {
     "revision": "d3fa1114e0a0aca44d9ae531cc381b96",

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/spbts-online-admission/static/css/main.5e7f52e6.chunk.css",
-    "main.js": "/spbts-online-admission/static/js/main.94be045b.chunk.js",
-    "main.js.map": "/spbts-online-admission/static/js/main.94be045b.chunk.js.map",
-    "runtime-main.js": "/spbts-online-admission/static/js/runtime-main.271b2da0.js",
-    "runtime-main.js.map": "/spbts-online-admission/static/js/runtime-main.271b2da0.js.map",
+    "main.js": "/spbts-online-admission/static/js/main.ad5f9ec5.chunk.js",
+    "main.js.map": "/spbts-online-admission/static/js/main.ad5f9ec5.chunk.js.map",
+    "runtime-main.js": "/spbts-online-admission/static/js/runtime-main.2790f516.js",
+    "runtime-main.js.map": "/spbts-online-admission/static/js/runtime-main.2790f516.js.map",
     "static/css/2.190caba9.chunk.css": "/spbts-online-admission/static/css/2.190caba9.chunk.css",
     "static/js/2.cb1fe905.chunk.js": "/spbts-online-admission/static/js/2.cb1fe905.chunk.js",
     "static/js/2.cb1fe905.chunk.js.map": "/spbts-online-admission/static/js/2.cb1fe905.chunk.js.map",
-    "static/js/3.3fd69192.chunk.js": "/spbts-online-admission/static/js/3.3fd69192.chunk.js",
-    "static/js/3.3fd69192.chunk.js.map": "/spbts-online-admission/static/js/3.3fd69192.chunk.js.map",
+    "static/js/3.e7ed8739.chunk.js": "/spbts-online-admission/static/js/3.e7ed8739.chunk.js",
+    "static/js/3.e7ed8739.chunk.js.map": "/spbts-online-admission/static/js/3.e7ed8739.chunk.js.map",
     "static/js/4.96c94ae0.chunk.js": "/spbts-online-admission/static/js/4.96c94ae0.chunk.js",
     "static/js/4.96c94ae0.chunk.js.map": "/spbts-online-admission/static/js/4.96c94ae0.chunk.js.map",
     "static/js/5.bc4a4be6.chunk.js": "/spbts-online-admission/static/js/5.bc4a4be6.chunk.js",
@@ -21,7 +21,7 @@
     "static/js/8.2b10866d.chunk.js": "/spbts-online-admission/static/js/8.2b10866d.chunk.js",
     "static/js/8.2b10866d.chunk.js.map": "/spbts-online-admission/static/js/8.2b10866d.chunk.js.map",
     "index.html": "/spbts-online-admission/index.html",
-    "precache-manifest.e9f856cacb5067f18a3123aff8744505.js": "/spbts-online-admission/precache-manifest.e9f856cacb5067f18a3123aff8744505.js",
+    "precache-manifest.095ee9d8bd4554b2b5e4676e90f4134e.js": "/spbts-online-admission/precache-manifest.095ee9d8bd4554b2b5e4676e90f4134e.js",
     "service-worker.js": "/spbts-online-admission/service-worker.js",
     "static/css/2.190caba9.chunk.css.map": "/spbts-online-admission/static/css/2.190caba9.chunk.css.map",
     "static/css/main.5e7f52e6.chunk.css.map": "/spbts-online-admission/static/css/main.5e7f52e6.chunk.css.map",
@@ -36,10 +36,10 @@
     "static/media/send.7fbcc21f.svg": "/spbts-online-admission/static/media/send.7fbcc21f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.271b2da0.js",
+    "static/js/runtime-main.2790f516.js",
     "static/css/2.190caba9.chunk.css",
     "static/js/2.cb1fe905.chunk.js",
     "static/css/main.5e7f52e6.chunk.css",
-    "static/js/main.94be045b.chunk.js"
+    "static/js/main.ad5f9ec5.chunk.js"
   ]
 }
