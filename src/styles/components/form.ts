@@ -76,25 +76,34 @@ export const StyledFormInputContainer = styled.div<GridProps>`
   row-gap: 0.4rem;
   column-gap: 2rem;
 
-  grid-template-rows: ${p => (p.rows ? `${p.rows}` : "1fr")};
-  grid-template-columns: ${p => (p.columns && `${p.columns}`) || "1fr"};
+  grid-template-rows: ${(p) => (p.rows ? `${p.rows}` : "1fr")};
+  grid-template-columns: ${(p) => (p.columns && `${p.columns}`) || "1fr"};
 
   ${media.laptopXs} {
-    display: ${p => p.disabled && "none"};
+    display: ${(p) => p.disabled && "none"};
   }
 
   ${StyledFormHeading} {
-    color: ${p => p.disabled && "var(--color-disabled-text)"};
+    color: ${(p) => p.disabled && "var(--color-disabled-text)"};
 
     & > label {
-      opacity: ${p => (p.disabled ? "0" : "1")};
-      visibility: ${p => (p.disabled ? "hidden" : "visible")};
+      opacity: ${(p) => (p.disabled ? "0" : "1")};
+      visibility: ${(p) => (p.disabled ? "hidden" : "visible")};
 
       & > span:last-child {
         padding: 0;
       }
     }
   }
+`;
+
+export const StyledFormRadioError = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-transform: uppercase;
+
+  padding: 0.8rem 0;
 `;
 
 export const StyledFormRadioContainer = styled.div<{ disabled?: boolean }>`
@@ -106,8 +115,12 @@ export const StyledFormRadioContainer = styled.div<{ disabled?: boolean }>`
     margin-right: 2rem;
   }
 
+  & > div:not(:last-child) {
+    margin-right: 2rem;
+  }
+
   ${StyledFormHeading} {
-    color: ${p => p.disabled && "var(--color-disabled-text)"};
+    color: ${(p) => p.disabled && "var(--color-disabled-text)"};
   }
 `;
 
@@ -124,8 +137,8 @@ export const StyledFormInputWrapper = styled.div<GridProps>`
   row-gap: 1.6rem;
   column-gap: 2rem;
 
-  grid-template-rows: ${p => (p.rows ? `${p.rows}` : "1fr")};
-  grid-template-columns: ${p => (p.columns && `${p.columns}`) || "1fr"};
+  grid-template-rows: ${(p) => (p.rows ? `${p.rows}` : "1fr")};
+  grid-template-columns: ${(p) => (p.columns && `${p.columns}`) || "1fr"};
 `;
 
 export const StyledFormRadioWrapper = styled.div<GridProps>`
@@ -139,5 +152,5 @@ margin-right: 2rem;
   column-gap: 2rem;
 
   grid-auto-flow: column;
-  grid-template-columns: ${p => (p.columns && `${p.columns}`) || "1fr"}; */
+  grid-template-columns: ${(p) => (p.columns && `${p.columns}`) || "1fr"}; */
 `;

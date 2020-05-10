@@ -4,6 +4,7 @@ import {
   StyledFormRadioWrapper,
   StyledFormInputHeader,
   StyledFormHeading,
+  StyledFormRadioError,
 } from "styles";
 
 type RadioWrapperProps = {
@@ -13,6 +14,7 @@ type RadioWrapperProps = {
   columns?: string;
   disabled?: boolean;
   children?: React.ReactNode;
+  error?: string;
 };
 
 const RadioHeading: React.FC<RadioWrapperProps> = ({ heading }) => (
@@ -30,6 +32,7 @@ const RadioWrapper: React.FC<RadioWrapperProps> = ({
   columns,
   disabled,
   children,
+  error,
 }) => {
   return (
     <StyledFormRadioContainer id={id} disabled={disabled}>
@@ -37,6 +40,7 @@ const RadioWrapper: React.FC<RadioWrapperProps> = ({
       <StyledFormRadioWrapper rows={rows} columns={columns}>
         {children}
       </StyledFormRadioWrapper>
+      {error && <StyledFormRadioError>{error}</StyledFormRadioError>}
     </StyledFormRadioContainer>
   );
 };
