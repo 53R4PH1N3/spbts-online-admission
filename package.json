@@ -2,11 +2,14 @@
   "name": "spbts-online-admission",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://roldanjrcodearts9711.github.io/spbts-online-admission/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "babelMacros": {
     "styledComponents": {
@@ -35,6 +38,7 @@
     "typescript": "~3.8.3"
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "prettier": "^2.0.5"
   },
   "eslintConfig": {
