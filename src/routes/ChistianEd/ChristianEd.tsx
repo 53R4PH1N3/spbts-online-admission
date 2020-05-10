@@ -46,7 +46,9 @@ type CollegeTypes = EnrolleeStatusProps &
   PaymentProps;
 
 const College: React.FC<Props> = () => {
-  const sendEmail = useEmail<CollegeTypes>("spbts_pre_admission_template");
+  const sendEmail = useEmail<CollegeTypes>(
+    "spbts_college_pre_admission_template"
+  );
 
   const { register, errors, watch, setValue, handleSubmit } = useForm<
     CollegeTypes
