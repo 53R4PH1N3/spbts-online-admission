@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "525a50dd827f9ebc24a99462a4db274a",
+    "revision": "bad67e312160d9dbf8170e160715428d",
     "url": "/spbts-online-admission/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spbts-online-admission/static/css/2.190caba9.chunk.css"
   },
   {
-    "revision": "733e07b0a2251b0c5942",
+    "revision": "4d35fa75da58af7a1cc2",
     "url": "/spbts-online-admission/static/css/main.5e7f52e6.chunk.css"
   },
   {
@@ -20,36 +20,36 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spbts-online-admission/static/js/2.cb1fe905.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b421fa200dab06a300fc",
-    "url": "/spbts-online-admission/static/js/3.b98097b4.chunk.js"
+    "revision": "285ed48dbb28534e5822",
+    "url": "/spbts-online-admission/static/js/3.097e2ea3.chunk.js"
   },
   {
-    "revision": "ccd9e6373c2f33db3a6a",
-    "url": "/spbts-online-admission/static/js/4.63433235.chunk.js"
+    "revision": "b835d0bb9f3c9f96f93f",
+    "url": "/spbts-online-admission/static/js/4.ec8a28e4.chunk.js"
   },
   {
-    "revision": "1c5a4f11e436112ddcc0",
-    "url": "/spbts-online-admission/static/js/5.415acb1e.chunk.js"
+    "revision": "394e69635451a169eddf",
+    "url": "/spbts-online-admission/static/js/5.e7115fce.chunk.js"
   },
   {
-    "revision": "938788b5740117d4c462",
-    "url": "/spbts-online-admission/static/js/6.a93c3b62.chunk.js"
+    "revision": "8759ab9cccc5eee62b04",
+    "url": "/spbts-online-admission/static/js/6.da767391.chunk.js"
   },
   {
     "revision": "812043cd15203de53282",
     "url": "/spbts-online-admission/static/js/7.9aa2c401.chunk.js"
   },
   {
-    "revision": "9a39e486086fa541db52",
-    "url": "/spbts-online-admission/static/js/8.bd762844.chunk.js"
+    "revision": "f74e7628783bae6b001c",
+    "url": "/spbts-online-admission/static/js/8.964851f8.chunk.js"
   },
   {
-    "revision": "733e07b0a2251b0c5942",
-    "url": "/spbts-online-admission/static/js/main.a876e0fc.chunk.js"
+    "revision": "4d35fa75da58af7a1cc2",
+    "url": "/spbts-online-admission/static/js/main.9c4b7368.chunk.js"
   },
   {
-    "revision": "28ec4b8d73d1eff01f88",
-    "url": "/spbts-online-admission/static/js/runtime-main.490a40c8.js"
+    "revision": "0edd4b98f548f6544fa6",
+    "url": "/spbts-online-admission/static/js/runtime-main.05a10cfd.js"
   },
   {
     "revision": "d3fa1114e0a0aca44d9ae531cc381b96",
