@@ -1,4 +1,24 @@
 export type EducationalProps = {
+  elementarySchoolName?: string;
+  elementaryYearGraduated?: string;
+
+  jhSchoolName?: string;
+  jhYearGraduated?: string;
+
+  shSchoolName?: string;
+  shYearGraduated?: string;
+
+  collegeSchoolName?: string;
+  collegeCourseTaken?: string;
+  collegeYearGraduated?: string;
+
+  specialSkills?: string;
+
+  authorizedPerson1Name?: string;
+  authorizedPerson1Relationship?: string;
+  authorizedPerson2Name?: string;
+  authorizedPerson2Relationship?: string;
+
   elementary?: {
     schoolName?: string;
     yearGraduated?: string;
@@ -19,8 +39,6 @@ export type EducationalProps = {
     courseTaken?: string;
     yearGraduated?: string;
   };
-
-  specialSkills?: string;
 
   authorizedPersons?: {
     person1Name?: string;

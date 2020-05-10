@@ -7,6 +7,10 @@ export type EnrolleeStatusProps = {
     from: string;
     to: string;
   };
+
+  lastSyFromYear?: string;
+  lastSyToYear?: string;
+
   lastSchoolYearAttended?: {
     from?: string;
     to?: string;

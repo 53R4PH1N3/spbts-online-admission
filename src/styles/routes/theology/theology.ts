@@ -74,11 +74,23 @@ export const StyledTheologySectionHeader = styled.header`
   }
 `;
 
-export const StyledTheologyCheckboxWrapper = styled.section`
+export const StyledTheologyCheckboxError = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-transform: uppercase;
+`;
+
+type CheckboxProps = {
+  error?: boolean;
+};
+
+export const StyledTheologyCheckboxWrapper = styled.section<CheckboxProps>`
   padding: 4rem 2rem;
 
   border-radius: 3px;
-  border: 1px dashed var(--color-disabled-text);
+  border: 1px dashed
+    ${(p) => (p.error ? "var(--color-primary)" : "var(--color-disabled-text)")};
 
   ${media.tabletSm} {
     padding: 2.4rem 2rem;

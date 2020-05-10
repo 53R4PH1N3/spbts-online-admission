@@ -21,7 +21,7 @@ const Landing: React.FC<Props> = ({ history }) => {
   ];
   const basicEdOffers: SelectOptionProps[] = [
     {
-      text: "Kinder II",
+      text: "Kinder 2",
       onClick: () => history.push("/kinder-2"),
     },
     {
