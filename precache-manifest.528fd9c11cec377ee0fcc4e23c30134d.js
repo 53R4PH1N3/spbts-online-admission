@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2dcac6be0db64fbc3de0b3b2804e51e9",
+    "revision": "e68138d83fc3dc0b187001da85837c44",
     "url": "/spbts-online-admission/index.html"
   },
   {
