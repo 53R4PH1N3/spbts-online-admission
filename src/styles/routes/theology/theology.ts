@@ -86,6 +86,8 @@ type CheckboxProps = {
 };
 
 export const StyledTheologyCheckboxWrapper = styled.section<CheckboxProps>`
+  height: max-content;
+
   padding: 4rem 2rem;
 
   border-radius: 3px;
@@ -101,6 +103,8 @@ export const StyledTheologyCheckboxWrapper = styled.section<CheckboxProps>`
   }
 
   ${media.mobileSm} {
+    min-height: 30rem;
+
     padding: 1.2rem 1.6rem;
   }
 `;

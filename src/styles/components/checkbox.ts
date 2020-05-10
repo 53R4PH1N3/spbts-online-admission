@@ -39,11 +39,15 @@ export const StyledCheckboxBox = styled.span`
 `;
 
 export const StyledCheckboxLabel = styled.span`
+  height: max-content;
+
   transition: var(--transition-primary);
   padding: 0.8rem 0;
 `;
 
 export const StyledCheckbox = styled.label<{ disabled?: boolean }>`
+  height: max-content;
+
   & > input {
     display: none;
   }

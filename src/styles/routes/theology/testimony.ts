@@ -6,6 +6,12 @@ export const StyledTestimonyFieldWrapper = styled.div`
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
 
+  #understanding-of-gospel {
+    ${media.tabletXl} {
+      grid-column: 1 / -1;
+    }
+  }
+
   #salvation-testimony {
     ${media.tabletXl} {
       grid-column: 1 / -1;

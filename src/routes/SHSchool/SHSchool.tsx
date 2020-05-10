@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -11,6 +11,7 @@ import {
   StyledBasicEdEducationalFieldWrapper,
   StyledTheologyCheckboxWrapper,
   StyledTheologyCheckboxError,
+  StyledPaymentMoneyTransfer,
 } from "styles";
 import {
   Navigation,
@@ -20,6 +21,7 @@ import {
   Radio,
   Form,
   Checkbox,
+  Modal,
 } from "components";
 
 import {
@@ -28,45 +30,104 @@ import {
   EducationalProps,
   TestimonyProps,
   SectionContainer,
+  PaymentProps,
+  PaymentInfo,
 } from "routes";
+import { useEmail } from "hooks";
 
 type Props = {} & RouteComponentProps;
 
 type BasicEdTypes = EnrolleeStatusProps &
   PersonalProps &
   EducationalProps &
-  TestimonyProps;
+  TestimonyProps &
+  PaymentProps;
 
 const SeniorHighSchool: React.FC<Props> = () => {
-  const { register, errors, setValue, handleSubmit } = useForm<BasicEdTypes>();
+  const sendEmail = useEmail("spbts_pre_admission_template");
 
-  const onFormSubmit = (data: BasicEdTypes) => {
+  const { register, errors, watch, setValue, handleSubmit } = useForm<
+    BasicEdTypes
+  >();
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const [showLoadingModal, setShowLoading] = useState(false);
+
+  const onFormSubmit = async (data: BasicEdTypes) => {
     console.log(data);
+    try {
+      const response = sendEmail({
+        from_name: data.emailAddress,
+        message_html: data.firstName,
+      });
+
+      setShowLoading(true);
+
+      if (response) {
+        setTimeout(() => {
+          setShowLoading(false);
+          setShowSuccessModal(true);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+  const isMoneyTransfer =
+    watch("paymentMethod")?.toLocaleLowerCase() === "money transfer";
+
+  const isBankTransaction =
+    watch("paymentMethod")?.toLocaleLowerCase() === "bank transaction";
 
   useEffect(() => {
     setValue("educationLevel", "Senior High");
-  }, [setValue]);
+
+    if (isMoneyTransfer) {
+      setValue("paymentBank", "");
+    } else {
+      setValue("paymentService", "");
+    }
+  }, [isMoneyTransfer, setValue]);
 
   return (
     <StyledTheology>
       <Navigation />
 
+      <Modal
+        type="success"
+        visible={showSuccessModal}
+        title="success"
+        heading="Submitted Successfully"
+        subHeading="Your form has been successfully submitted."
+        onClose={() => setShowSuccessModal(false)}
+      />
+
+      <Modal
+        type="info"
+        visible={showLoadingModal}
+        title="information"
+        heading="Processing"
+        subHeading="Please wait. Your information is being process."
+        onClose={() => setShowLoading(false)}
+      />
+
       <StyledTheologyContainer>
         <Form onSubmit={handleSubmit(onFormSubmit)}>
           <StyledFormHeader>
-            <h1>Pre-Admission Form</h1>
+            <h1>Admission Form</h1>
             <p>
               Please fill all necessary information with love and with all your
               honesty.
             </p>
+            <p>Please note, an asterisk(*) denotes a required field.</p>
           </StyledFormHeader>
 
           <SectionContainer heading="Enrollee Status">
             <StyledBasicEdFieldWrapper>
               <RadioWrapper
                 id="type-of-student"
-                heading="What type student are you?"
+                heading="What student type are you?"
                 error={errors.typeOfStudent && "Student Types is Required!"}
               >
                 <Radio
@@ -295,7 +356,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
                 />
                 <Input
                   label="religion"
-                  placeholder="Ex. Southern Baptist / Etc.."
+                  placeholder="religion"
                   id="religion"
                   name="religion"
                   ref={register({ required: true })}
@@ -321,8 +382,14 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   label="email address"
                   id="email"
                   name="emailAddress"
-                  ref={register({ required: true })}
-                  error={errors.emailAddress && "emailAddress is required"}
+                  ref={register({
+                    required: true,
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "invalid email address",
+                    },
+                  })}
+                  error={errors.emailAddress && "email address is required"}
                 />
                 <Input
                   label="facebook account"
@@ -330,7 +397,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   name="facebookAccount"
                   ref={register({ required: true })}
                   error={
-                    errors.facebookAccount && "facebookAccount is required"
+                    errors.facebookAccount && "facebook account is required"
                   }
                 />
                 <Input
@@ -431,7 +498,6 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   error={errors.scholarship && "scholarship is required"}
                 />
                 <Input
-                  type="number"
                   label="amount"
                   id="amount"
                   name="scholarshipAmmout"
@@ -497,7 +563,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
               </InputWrapper>
 
               <InputWrapper
-                heading="Authorized person/s to have an access your school records"
+                heading="Authorized person/s to have an access on your school records"
                 id="authorized-persons"
                 columns="repeat(6, 1fr)"
               >
@@ -541,6 +607,132 @@ const SeniorHighSchool: React.FC<Props> = () => {
                 />
               </InputWrapper>
             </StyledBasicEdEducationalFieldWrapper>
+          </SectionContainer>
+
+          <SectionContainer heading="Payment Information">
+            <PaymentInfo />
+
+            <RadioWrapper
+              heading="select payment method"
+              id="payment-method"
+              error={
+                errors.paymentMethod &&
+                "payment method is required! you need to select one."
+              }
+            >
+              <Radio
+                label="Money transfer"
+                value="Money Transfer"
+                name="paymentMethod"
+                ref={register({ required: true })}
+              />
+              <Radio
+                label="Bank Transaction"
+                value="Bank Transaction"
+                name="paymentMethod"
+                ref={register({ required: true })}
+              />
+            </RadioWrapper>
+
+            {isMoneyTransfer && (
+              <React.Fragment>
+                <StyledPaymentMoneyTransfer>
+                  <p>
+                    Send your payment to the SPBTS Finance Officer:
+                    <span>MARIA CIENA B. TENECIO</span>
+                    <span>09190083163</span>
+                    <span>Davao City</span>
+                  </p>
+                </StyledPaymentMoneyTransfer>
+
+                <RadioWrapper
+                  heading="select service"
+                  error={
+                    errors.paymentService && "payment service is required!"
+                  }
+                >
+                  <Radio
+                    label="Palawan Pawnship"
+                    name="paymentService"
+                    value="Palawan Pawnship"
+                    ref={register({ required: true })}
+                  />
+                  <Radio
+                    label="RD Pawnshop"
+                    name="paymentService"
+                    value="RD Pawnshop"
+                    ref={register({ required: true })}
+                  />
+                  <Radio
+                    label="M Lhuillier"
+                    name="paymentService"
+                    value="M Lhuillier"
+                    ref={register({ required: true })}
+                  />
+                </RadioWrapper>
+              </React.Fragment>
+            )}
+
+            {isBankTransaction && (
+              <React.Fragment>
+                <StyledPaymentMoneyTransfer>
+                  <p>
+                    You may send your payment to any of the following SPBTS Bank
+                    Accounts:
+                    <span>SPBTS</span>
+                    <span>BPI</span>
+                    <span>9431 0059 61</span>
+                  </p>
+
+                  <p>
+                    <br />
+                    <span>SPBTS</span>
+                    <span>LAND BANK OF THE PHILIPPINES</span>
+                    <span>2981 0856 23</span>
+                  </p>
+
+                  <p>
+                    <br />
+                    <span>SPBTS</span>
+                    <span>METROBANK</span>
+                    <span>547 3 547053606</span>
+                  </p>
+                </StyledPaymentMoneyTransfer>
+
+                <RadioWrapper
+                  heading="select bank"
+                  error={errors.paymentBank && "payment bank is required!"}
+                >
+                  <Radio
+                    label="BPI"
+                    name="paymentBank"
+                    value="BPI"
+                    ref={register({ required: true })}
+                  />
+                  <Radio
+                    label="LAND BANK OF THE PHILIPPINES"
+                    name="paymentBank"
+                    value="LAND_BANK"
+                    ref={register({ required: true })}
+                  />
+                  <Radio
+                    label="METROBANK"
+                    name="paymentBank"
+                    value="METROBANK"
+                    ref={register({ required: true })}
+                  />
+                </RadioWrapper>
+              </React.Fragment>
+            )}
+
+            <StyledPaymentMoneyTransfer>
+              <p>
+                As proof of payment, please send a photo of the receipt to our
+                Finance Officer to any of the following:
+                <span>FB Messenger: Ciena Tenecio</span>
+                <span>E-mail: ciena_tenecio@yahoo.com</span>
+              </p>
+            </StyledPaymentMoneyTransfer>
           </SectionContainer>
 
           <StyledTheologyCheckboxWrapper

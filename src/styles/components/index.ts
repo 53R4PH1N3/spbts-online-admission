@@ -10,3 +10,5 @@ export * from "./form";
 export * from "./navigation";
 
 export * from "./loader";
+
+export * from "./modal";

@@ -11,11 +11,6 @@ export type EnrolleeStatusProps = {
   lastSyFromYear?: string;
   lastSyToYear?: string;
 
-  lastSchoolYearAttended?: {
-    from?: string;
-    to?: string;
-  };
-
   desiredCourse?: string;
   educationLevel?: string;
 

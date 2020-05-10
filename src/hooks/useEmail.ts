@@ -6,20 +6,23 @@ type EmailProps<T> = {
   message_html: T;
 };
 
-export function useEmail<T>() {
-  const sendEmail = useCallback(async (templateParams: EmailProps<T>) => {
-    try {
-      const result = await emailJs.send(
-        "gmail",
-        "spbts_pre_admission_form",
-        templateParams,
-        "user_OMAPKmRxKapTHZnqgQluD"
-      );
-      console.log(result);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+export function useEmail<T>(templateID: string) {
+  const sendEmail = useCallback(
+    async (templateParams: EmailProps<T>) => {
+      try {
+        const result = await emailJs.send(
+          "gmail",
+          templateID,
+          templateParams,
+          "user_OMAPKmRxKapTHZnqgQluD"
+        );
+        return result;
+      } catch (error) {
+        return error;
+      }
+    },
+    [templateID]
+  );
 
   return sendEmail;
 }
