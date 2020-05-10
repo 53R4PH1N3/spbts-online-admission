@@ -49,7 +49,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <StyledInputLabel htmlFor={inputId}>
             {!error ? label : error}
             {required && !disabled && <span>*</span>}
-            {!required && !disabled && <i>( Optional )</i>}
             {disabled && <i>( Disabled )</i>}
           </StyledInputLabel>
         )}

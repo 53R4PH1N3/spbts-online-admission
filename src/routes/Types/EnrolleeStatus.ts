@@ -17,6 +17,8 @@ export type EnrolleeStatusProps = {
   yearLevel?: string;
   gradeLevel?: string;
 
+  academicTrack?: string;
+
   schoolNameLastAttended?: string;
   section?: string;
 };

@@ -39,30 +39,28 @@ import { useEmail } from "hooks";
 
 type Props = {} & RouteComponentProps;
 
-type TheologyTypes = EnrolleeStatusProps &
+type CollegeTypes = EnrolleeStatusProps &
   PersonalProps &
   EducationalProps &
   TestimonyProps &
   PaymentProps;
 
-const Theology: React.FC<Props> = () => {
-  const sendEmail = useEmail("spbts_pre_admission_template");
+const College: React.FC<Props> = () => {
+  const sendEmail = useEmail<CollegeTypes>("spbts_pre_admission_template");
 
   const { register, errors, watch, setValue, handleSubmit } = useForm<
-    TheologyTypes
+    CollegeTypes
   >();
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [showLoadingModal, setShowLoading] = useState(false);
 
-  const onFormSubmit = async (data: TheologyTypes) => {
+  const onFormSubmit = async (data: CollegeTypes) => {
     console.log(data);
+
     try {
-      const response = sendEmail({
-        from_name: data.emailAddress,
-        message_html: data.firstName,
-      });
+      const response = sendEmail(data);
 
       setShowLoading(true);
 
@@ -76,6 +74,9 @@ const Theology: React.FC<Props> = () => {
       console.error(error);
     }
   };
+
+  const isNewStudent =
+    watch("typeOfStudent")?.toLocaleLowerCase() === "new student";
 
   const isCurrentStudent =
     watch("typeOfStudent")?.toLocaleLowerCase() === "current student";
@@ -299,6 +300,7 @@ const Theology: React.FC<Props> = () => {
               >
                 <Input
                   label="gender"
+                  placeholder="Male / Female"
                   name="gender"
                   ref={register({ required: true })}
                   error={errors.gender && "gender is required"}
@@ -421,6 +423,7 @@ const Theology: React.FC<Props> = () => {
                   }
                 />
                 <Input
+                  type="facebook"
                   label="facebook account"
                   id="facebook-account"
                   name="facebookAccount"
@@ -668,16 +671,18 @@ const Theology: React.FC<Props> = () => {
                   label="school name"
                   id="sh-school-name"
                   name="shSchoolName"
-                  ref={register({ required: true })}
+                  ref={register({ required: isNewStudent })}
                   error={errors.shSchoolName && "school name is required"}
+                  required={isNewStudent}
                 />
                 <Input
                   type="number"
                   label="year graduated"
                   id="sh-year-graduated"
                   name="shYearGraduated"
-                  ref={register({ required: true })}
+                  ref={register({ required: isNewStudent })}
                   error={errors.shYearGraduated && "year graduated is required"}
+                  required={isNewStudent}
                 />
               </InputWrapper>
 
@@ -719,11 +724,8 @@ const Theology: React.FC<Props> = () => {
                   placeholder="please specify"
                   id="special-skills"
                   name="specialSkills"
-                  ref={register({ required: true })}
-                  error={
-                    errors.specialSkills &&
-                    "special skills / abilities required"
-                  }
+                  ref={register}
+                  required={false}
                 />
               </InputWrapper>
             </StyledEducationalFieldWrapper>
@@ -811,9 +813,9 @@ const Theology: React.FC<Props> = () => {
                   }
                 >
                   <Radio
-                    label="Palawan Pawnship"
+                    label="Palawan Pawnshop"
                     name="paymentService"
-                    value="Palawan Pawnship"
+                    value="Palawan Pawnshop"
                     ref={register({ required: true })}
                   />
                   <Radio
@@ -918,4 +920,4 @@ const Theology: React.FC<Props> = () => {
   );
 };
 
-export default Theology;
+export default College;

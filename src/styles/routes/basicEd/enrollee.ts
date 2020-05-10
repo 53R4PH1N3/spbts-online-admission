@@ -36,9 +36,25 @@ export const StyledBasicEdFieldWrapper = styled(StyledEnrolleeFieldWrapper)`
     }
   }
 
+  #sh-course-name {
+    ${media.tabletMd} {
+      grid-column: 1 / 3;
+    }
+
+    ${media.tabletSm} {
+      grid-column: 1 / -1;
+    }
+  }
+
   #grade-level {
     ${media.tabletSm} {
       grid-column: 1 / 3;
+    }
+  }
+
+  #academic-track {
+    ${media.tabletSm} {
+      grid-column: 3 / -1;
     }
   }
 

@@ -1,14 +1,9 @@
 import { useCallback } from "react";
 import emailJs from "emailjs-com";
 
-type EmailProps<T> = {
-  from_name: string;
-  message_html: T;
-};
-
 export function useEmail<T>(templateID: string) {
   const sendEmail = useCallback(
-    async (templateParams: EmailProps<T>) => {
+    async (templateParams: T) => {
       try {
         const result = await emailJs.send(
           "gmail",

@@ -42,7 +42,7 @@ export type PersonalProps = {
   };
 
   scholarship?: string;
-  scholarshipAmmout?: string;
+  scholarshipAmmount?: string;
 
   churchName?: string;
   dateBaptized?: string;

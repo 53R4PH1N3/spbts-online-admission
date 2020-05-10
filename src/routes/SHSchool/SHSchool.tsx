@@ -44,7 +44,7 @@ type BasicEdTypes = EnrolleeStatusProps &
   PaymentProps;
 
 const SeniorHighSchool: React.FC<Props> = () => {
-  const sendEmail = useEmail("spbts_pre_admission_template");
+  const sendEmail = useEmail<BasicEdTypes>("spbts_basic_ed_admission_template");
 
   const { register, errors, watch, setValue, handleSubmit } = useForm<
     BasicEdTypes
@@ -57,10 +57,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
   const onFormSubmit = async (data: BasicEdTypes) => {
     console.log(data);
     try {
-      const response = sendEmail({
-        from_name: data.emailAddress,
-        message_html: data.firstName,
-      });
+      const response = sendEmail(data);
 
       setShowLoading(true);
 
@@ -74,6 +71,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
       console.error(error);
     }
   };
+
   const isMoneyTransfer =
     watch("paymentMethod")?.toLocaleLowerCase() === "money transfer";
 
@@ -216,7 +214,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
               >
                 <Input
                   label="Education Level"
-                  id="course-name"
+                  id="sh-course-name"
                   name="educationLevel"
                   ref={register({ required: true })}
                   error={errors.educationLevel && "education level is required"}
@@ -229,6 +227,14 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   name="gradeLevel"
                   ref={register({ required: true })}
                   error={errors.gradeLevel && "grade level is required"}
+                />
+                <Input
+                  label="academic track"
+                  placeholder="ABM / HUMSS"
+                  id="academic-track"
+                  name="academicTrack"
+                  ref={register({ required: true })}
+                  error={errors.academicTrack && "academic track is required"}
                 />
                 <Input
                   label="Section"
@@ -286,6 +292,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
               >
                 <Input
                   label="gender"
+                  placeholder="Male / Female"
                   name="gender"
                   ref={register({ required: true })}
                   error={errors.gender && "gender is required"}
@@ -491,18 +498,15 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   label="scholarship"
                   id="scholarship"
                   name="scholarship"
-                  ref={register({ required: true })}
-                  error={errors.scholarship && "scholarship is required"}
+                  ref={register}
+                  required={false}
                 />
                 <Input
                   label="amount"
                   id="amount"
-                  name="scholarshipAmmout"
-                  ref={register({ required: true })}
-                  error={
-                    errors.scholarshipAmmout &&
-                    "scholarship ammount is required"
-                  }
+                  name="scholarshipAmmount"
+                  ref={register}
+                  required={false}
                 />
               </InputWrapper>
             </StyledBasicEdPersonalFieldWrapper>
@@ -649,9 +653,9 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   }
                 >
                   <Radio
-                    label="Palawan Pawnship"
+                    label="Palawan Pawnshop"
                     name="paymentService"
-                    value="Palawan Pawnship"
+                    value="Palawan Pawnshop"
                     ref={register({ required: true })}
                   />
                   <Radio

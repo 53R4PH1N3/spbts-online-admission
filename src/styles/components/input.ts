@@ -21,14 +21,6 @@ export const StyledInput = styled.input<InputProps>`
   background-color: ${(p) =>
     p.disabled ? "var(--color-bg-secondary)" : "var(--color-bg-tertiary)"};
 
-  &[type="text"] {
-    text-transform: capitalize;
-  }
-
-  &[type="username"] {
-    text-transform: auto;
-  }
-
   &[type="date"] {
     &::-webkit-datetime-edit-text {
       margin: 0 0.4rem;
