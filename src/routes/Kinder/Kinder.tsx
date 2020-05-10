@@ -117,10 +117,7 @@ const Kinder: React.FC<Props> = () => {
         <Form onSubmit={handleSubmit(onFormSubmit)}>
           <StyledFormHeader>
             <h1>Admission Form</h1>
-            <p>
-              Please fill all necessary information with love and with all your
-              honesty.
-            </p>
+            <p>Please fill all necessary information with with all honesty.</p>
             <p>Please note, an asterisk(*) denotes a required field.</p>
           </StyledFormHeader>
 
@@ -138,12 +135,6 @@ const Kinder: React.FC<Props> = () => {
                   ref={register({ required: true })}
                 />
                 <Radio
-                  label="Returning Student"
-                  name="typeOfStudent"
-                  value="Returning Student"
-                  ref={register({ required: true })}
-                />
-                <Radio
                   label="Current Student"
                   name="typeOfStudent"
                   value="Current Student"
@@ -153,6 +144,12 @@ const Kinder: React.FC<Props> = () => {
                   label="Transferee"
                   name="typeOfStudent"
                   value="Transferee"
+                  ref={register({ required: true })}
+                />
+                <Radio
+                  label="Returning Student"
+                  name="typeOfStudent"
+                  value="Returning Student"
                   ref={register({ required: true })}
                 />
                 <Radio
