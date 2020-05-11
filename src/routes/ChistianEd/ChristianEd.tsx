@@ -106,7 +106,7 @@ const College: React.FC<Props> = () => {
     watch("paymentMethod")?.toLocaleLowerCase() === "bank transaction";
 
   useEffect(() => {
-    setValue("desiredCourse", "Bachelor of Arts In Theology");
+    setValue("desiredCourse", "Bachelor of Arts In Christian Education");
 
     if (isMoneyTransfer) {
       setValue("paymentBank", "");
