@@ -367,7 +367,7 @@ const College: React.FC<Props> = () => {
               </InputWrapper>
 
               <InputWrapper
-                heading="Nationalism"
+                heading="Nationality"
                 id="nationalism"
                 columns="repeat(3, 1fr)"
               >
