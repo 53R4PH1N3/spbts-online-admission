@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/spbts-online-admission/precache-manifest.70f32a761e9f29bd04225549d3379fdd.js"
+  "/spbts-online-admission/precache-manifest.99f5469beff034f062eff864596cb84a.js"
 );
 
 self.addEventListener('message', (event) => {
