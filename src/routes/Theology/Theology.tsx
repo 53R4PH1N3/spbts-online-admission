@@ -63,6 +63,7 @@ const College: React.FC<Props> = () => {
 
   const onFormSubmit = async (data: CollegeTypes) => {
     setDisabled(true);
+    setShowLoading(true);
 
     console.log(data);
 
@@ -77,8 +78,6 @@ const College: React.FC<Props> = () => {
 
     try {
       const response = await sendEmail(newData);
-
-      setShowLoading(true);
 
       if (response) {
         setTimeout(() => {

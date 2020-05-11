@@ -59,6 +59,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
 
   const onFormSubmit = async (data: BasicEdTypes) => {
     setDisabled(true);
+    setShowLoading(true);
 
     console.log(data);
 
@@ -71,8 +72,6 @@ const SeniorHighSchool: React.FC<Props> = () => {
 
     try {
       const response = await sendEmail(newData);
-
-      setShowLoading(true);
 
       if (response) {
         setTimeout(() => {
