@@ -20,5 +20,4 @@ export type EnrolleeStatusProps = {
   academicTrack?: string;
 
   schoolNameLastAttended?: string;
-  section?: string;
 };

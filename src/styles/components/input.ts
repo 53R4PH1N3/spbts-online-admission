@@ -26,11 +26,9 @@ export const StyledInput = styled.input<InputProps>`
       margin: 0 0.4rem;
     }
 
-    &::-webkit-inner-spin-button {
-      display: none;
-    }
-
-    &::-webkit-clear-button {
+    &::-webkit-inner-spin-button,
+    &::-webkit-clear-button,
+    &::-webkit-calendar-picker-indicator {
       display: none;
     }
   }

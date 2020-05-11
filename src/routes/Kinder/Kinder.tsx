@@ -210,7 +210,7 @@ const Kinder: React.FC<Props> = () => {
               <InputWrapper
                 heading="Current Education"
                 id="desired-course"
-                columns="repeat(6, 1fr)"
+                columns="repeat(3, 1fr)"
               >
                 <Input
                   label="Education Level"
@@ -227,13 +227,6 @@ const Kinder: React.FC<Props> = () => {
                   name="gradeLevel"
                   ref={register({ required: true })}
                   error={errors.gradeLevel && "grade level is required"}
-                />
-                <Input
-                  label="Section"
-                  id="section"
-                  name="section"
-                  ref={register({ required: true })}
-                  error={errors.section && "section is required"}
                 />
               </InputWrapper>
             </StyledBasicEdFieldWrapper>

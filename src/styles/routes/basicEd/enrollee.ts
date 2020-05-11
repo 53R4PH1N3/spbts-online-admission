@@ -36,37 +36,59 @@ export const StyledBasicEdFieldWrapper = styled(StyledEnrolleeFieldWrapper)`
     }
   }
 
-  #sh-course-name {
-    ${media.tabletMd} {
-      grid-column: 1 / 3;
+  #desired-course {
+    grid-column: 3 / -1;
+
+    #sh-course-name {
+      ${media.tabletMd} {
+        grid-column: 1 / 3;
+      }
+
+      ${media.tabletSm} {
+        grid-column: 1 / -1;
+      }
     }
 
-    ${media.tabletSm} {
+    #grade-level {
+      ${media.tabletSm} {
+        grid-column: 1 / 3;
+      }
+    }
+
+    #academic-track {
+      ${media.tabletSm} {
+        grid-column: 3 / -1;
+      }
+    }
+
+    ${media.laptopXs} {
       grid-column: 1 / -1;
-    }
-  }
 
-  #grade-level {
-    ${media.tabletSm} {
-      grid-column: 1 / 3;
-    }
-  }
+      ${StyledFormInputWrapper} {
+        grid-template-columns: repeat(4, 1fr);
 
-  #academic-track {
-    ${media.tabletSm} {
-      grid-column: 3 / -1;
-    }
-  }
-
-  #section {
-    grid-column: 4 / -1;
-
-    ${media.tabletXl} {
-      grid-column: 1 / 4;
+        #sh-course-name {
+          grid-column: 1 / 3;
+        }
+      }
     }
 
     ${media.tabletSm} {
-      grid-column: 1 / -1;
+      ${StyledFormInputWrapper} {
+        grid-template-columns: repeat(2, 1fr);
+
+        #sh-course-name {
+          grid-column: 1 / -1;
+        }
+
+        #grade-level {
+          grid-column: 1 / 2;
+        }
+
+        #academic-track {
+          grid-column: 2 / -1;
+        }
+      }
     }
   }
 `;

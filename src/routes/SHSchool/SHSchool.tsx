@@ -210,7 +210,7 @@ const SeniorHighSchool: React.FC<Props> = () => {
               <InputWrapper
                 heading="Current Education"
                 id="desired-course"
-                columns="repeat(6, 1fr)"
+                columns="repeat(3, 1fr)"
               >
                 <Input
                   label="Education Level"
@@ -235,13 +235,6 @@ const SeniorHighSchool: React.FC<Props> = () => {
                   name="academicTrack"
                   ref={register({ required: true })}
                   error={errors.academicTrack && "academic track is required"}
-                />
-                <Input
-                  label="Section"
-                  id="section"
-                  name="section"
-                  ref={register({ required: true })}
-                  error={errors.section && "section is required"}
                 />
               </InputWrapper>
             </StyledBasicEdFieldWrapper>
