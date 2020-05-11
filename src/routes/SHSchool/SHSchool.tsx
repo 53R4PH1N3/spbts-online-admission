@@ -11,7 +11,6 @@ import {
   StyledBasicEdEducationalFieldWrapper,
   StyledTheologyCheckboxWrapper,
   StyledTheologyCheckboxError,
-  StyledPaymentMoneyTransfer,
 } from "styles";
 import {
   Navigation,
@@ -31,7 +30,6 @@ import {
   TestimonyProps,
   SectionContainer,
   PaymentProps,
-  PaymentInfo,
 } from "routes";
 import { useEmail } from "hooks";
 import { transformDate } from "utils";
@@ -90,9 +88,6 @@ const SeniorHighSchool: React.FC<Props> = () => {
 
   const isMoneyTransfer =
     watch("paymentMethod")?.toLocaleLowerCase() === "money transfer";
-
-  const isBankTransaction =
-    watch("paymentMethod")?.toLocaleLowerCase() === "bank transaction";
 
   useEffect(() => {
     setValue("educationLevel", "Senior High");
@@ -640,132 +635,6 @@ const SeniorHighSchool: React.FC<Props> = () => {
                 />
               </InputWrapper>
             </StyledBasicEdEducationalFieldWrapper>
-          </SectionContainer>
-
-          <SectionContainer heading="Payment Information">
-            <PaymentInfo />
-
-            <RadioWrapper
-              heading="select payment method"
-              id="payment-method"
-              error={
-                errors.paymentMethod &&
-                "payment method is required! you need to select one."
-              }
-            >
-              <Radio
-                label="Money transfer"
-                value="Money Transfer"
-                name="paymentMethod"
-                ref={register({ required: true })}
-              />
-              <Radio
-                label="Bank Transaction"
-                value="Bank Transaction"
-                name="paymentMethod"
-                ref={register({ required: true })}
-              />
-            </RadioWrapper>
-
-            {isMoneyTransfer && (
-              <React.Fragment>
-                <StyledPaymentMoneyTransfer>
-                  <p>
-                    Send your payment to the SPBTS Finance Officer:
-                    <span>MARIA CIENA B. TENECIO</span>
-                    <span>09190083163</span>
-                    <span>Davao City</span>
-                  </p>
-                </StyledPaymentMoneyTransfer>
-
-                <RadioWrapper
-                  heading="select service"
-                  error={
-                    errors.paymentService && "payment service is required!"
-                  }
-                >
-                  <Radio
-                    label="Palawan Pawnshop"
-                    name="paymentService"
-                    value="Palawan Pawnshop"
-                    ref={register({ required: true })}
-                  />
-                  <Radio
-                    label="RD Pawnshop"
-                    name="paymentService"
-                    value="RD Pawnshop"
-                    ref={register({ required: true })}
-                  />
-                  <Radio
-                    label="M Lhuillier"
-                    name="paymentService"
-                    value="M Lhuillier"
-                    ref={register({ required: true })}
-                  />
-                </RadioWrapper>
-              </React.Fragment>
-            )}
-
-            {isBankTransaction && (
-              <React.Fragment>
-                <StyledPaymentMoneyTransfer>
-                  <p>
-                    You may send your payment to any of the following SPBTS Bank
-                    Accounts:
-                    <span>SPBTS</span>
-                    <span>BPI</span>
-                    <span>9431 0059 61</span>
-                  </p>
-
-                  <p>
-                    <br />
-                    <span>SPBTS</span>
-                    <span>LAND BANK OF THE PHILIPPINES</span>
-                    <span>2981 0856 23</span>
-                  </p>
-
-                  <p>
-                    <br />
-                    <span>SPBTS</span>
-                    <span>METROBANK</span>
-                    <span>547 3 547053606</span>
-                  </p>
-                </StyledPaymentMoneyTransfer>
-
-                <RadioWrapper
-                  heading="select bank"
-                  error={errors.paymentBank && "payment bank is required!"}
-                >
-                  <Radio
-                    label="BPI"
-                    name="paymentBank"
-                    value="BPI"
-                    ref={register({ required: true })}
-                  />
-                  <Radio
-                    label="LAND BANK OF THE PHILIPPINES"
-                    name="paymentBank"
-                    value="LAND BANK OF THE PHILIPPINES"
-                    ref={register({ required: true })}
-                  />
-                  <Radio
-                    label="METROBANK"
-                    name="paymentBank"
-                    value="METROBANK"
-                    ref={register({ required: true })}
-                  />
-                </RadioWrapper>
-              </React.Fragment>
-            )}
-
-            <StyledPaymentMoneyTransfer>
-              <p>
-                As proof of payment, please send a photo of the receipt to our
-                Finance Officer to any of the following:
-                <span>FB Messenger: Ciena Tenecio</span>
-                <span>E-mail: ciena_tenecio@yahoo.com</span>
-              </p>
-            </StyledPaymentMoneyTransfer>
           </SectionContainer>
 
           <StyledTheologyCheckboxWrapper

@@ -207,7 +207,7 @@ const College: React.FC<Props> = () => {
                 <Radio
                   label="2nd"
                   name="semester"
-                  value="2st"
+                  value="2nd"
                   ref={register({ required: true })}
                 />
                 <Radio
