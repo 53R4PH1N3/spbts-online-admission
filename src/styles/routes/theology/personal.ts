@@ -164,7 +164,8 @@ export const StyledPersonalFieldWrapper = styled.div`
       grid-column: 1 / -1;
     }
 
-    #home-address {
+    #home-address,
+    #home-country-address {
       grid-column: 1 / -1;
     }
 

@@ -97,6 +97,9 @@ const College: React.FC<Props> = () => {
   const isCurrentStudent =
     watch("typeOfStudent")?.toLocaleLowerCase() === "current student";
 
+  const isForeignerStudent =
+    watch("typeOfStudent")?.toLocaleLowerCase() === "foreigner";
+
   const isMarried = watch("civilStatus")?.toLocaleLowerCase() === "married";
 
   const isMoneyTransfer =
@@ -449,12 +452,35 @@ const College: React.FC<Props> = () => {
                   }
                 />
                 <Input
-                  label="home address"
+                  label={
+                    isForeignerStudent ? "philippine address" : "home address"
+                  }
                   id="home-address"
                   name="homeAddress"
                   ref={register({ required: true })}
-                  error={errors.homeAddress && "homeAddress is required"}
+                  error={
+                    (errors.homeAddress &&
+                      isForeignerStudent &&
+                      "philippine Address is required") ||
+                    (errors.homeAddress &&
+                      !isForeignerStudent &&
+                      "home Address is required") ||
+                    ""
+                  }
                 />
+
+                {isForeignerStudent && (
+                  <Input
+                    label="home country address"
+                    id="home-country-address"
+                    name="homeCountryAddress"
+                    ref={register({ required: true })}
+                    error={
+                      errors.homeCountryAddress &&
+                      "home Country Address is required"
+                    }
+                  />
+                )}
               </InputWrapper>
 
               <InputWrapper

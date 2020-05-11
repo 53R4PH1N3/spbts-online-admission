@@ -21,6 +21,7 @@ export type PersonalProps = {
   emailAddress: string;
   facebookAccount: string;
   homeAddress: string;
+  homeCountryAddress?: string;
 
   parentsAnnualIncome: {
     annualIncome: string;
