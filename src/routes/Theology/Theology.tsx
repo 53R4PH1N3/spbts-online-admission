@@ -36,6 +36,7 @@ import {
 import SectionContainer from "./SectionContainer";
 import PaymentInfo from "./PaymentInfo";
 import { useEmail } from "hooks";
+import { transformDate } from "utils";
 
 type Props = {} & RouteComponentProps;
 
@@ -61,8 +62,17 @@ const College: React.FC<Props> = () => {
   const onFormSubmit = async (data: CollegeTypes) => {
     console.log(data);
 
+    const birthDate = transformDate(data.birthDate);
+    const dateBaptized = transformDate(data.dateBaptized);
+
+    const newData = {
+      ...data,
+      birthDate,
+      dateBaptized,
+    };
+
     try {
-      const response = sendEmail(data);
+      const response = sendEmail(newData);
 
       setShowLoading(true);
 

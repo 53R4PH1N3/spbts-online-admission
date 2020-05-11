@@ -34,6 +34,7 @@ import {
   PaymentInfo,
 } from "routes";
 import { useEmail } from "hooks";
+import { transformDate } from "utils";
 
 type Props = {} & RouteComponentProps;
 
@@ -56,8 +57,16 @@ const Kinder: React.FC<Props> = () => {
 
   const onFormSubmit = async (data: BasicEdTypes) => {
     console.log(data);
+
+    const birthDate = transformDate(data.birthDate);
+
+    const newData = {
+      ...data,
+      birthDate,
+    };
+
     try {
-      const response = sendEmail(data);
+      const response = sendEmail(newData);
 
       setShowLoading(true);
 
