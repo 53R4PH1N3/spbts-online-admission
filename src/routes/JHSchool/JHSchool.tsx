@@ -55,7 +55,11 @@ const JuniorHighSchool: React.FC<Props> = () => {
 
   const [showLoadingModal, setShowLoading] = useState(false);
 
+  const [disabled, setDisabled] = useState(false);
+
   const onFormSubmit = async (data: BasicEdTypes) => {
+    setDisabled(true);
+
     console.log(data);
 
     const birthDate = transformDate(data.birthDate);
@@ -66,7 +70,7 @@ const JuniorHighSchool: React.FC<Props> = () => {
     };
 
     try {
-      const response = sendEmail(newData);
+      const response = await sendEmail(newData);
 
       setShowLoading(true);
 
@@ -74,6 +78,7 @@ const JuniorHighSchool: React.FC<Props> = () => {
         setTimeout(() => {
           setShowLoading(false);
           setShowSuccessModal(true);
+          setDisabled(false);
         }, 3000);
       }
     } catch (error) {
@@ -119,10 +124,10 @@ const JuniorHighSchool: React.FC<Props> = () => {
       />
 
       <StyledTheologyContainer>
-        <Form onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)} disabled={disabled}>
           <StyledFormHeader>
             <h1>Admission Form</h1>
-            <p>Please fill all necessary information with with all honesty.</p>
+            <p>Please fill all necessary information with all honesty.</p>
             <p>Please note, an asterisk(*) denotes a required field.</p>
           </StyledFormHeader>
 

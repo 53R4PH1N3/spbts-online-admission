@@ -10,12 +10,12 @@ type Props = {
   children?: React.ReactNode;
 } & React.HTMLProps<HTMLFormElement>;
 
-const Form: React.FC<Props> = ({ onSubmit, children }) => {
+const Form: React.FC<Props> = ({ onSubmit, disabled, children }) => {
   return (
     <StyledForm onSubmit={onSubmit}>
       {children}
       <StyledTheologySubmitSection>
-        <StyledButtonPrimary type="submit">
+        <StyledButtonPrimary type="submit" disabled={disabled}>
           Submit Form
           <SVG icon="send" />
         </StyledButtonPrimary>

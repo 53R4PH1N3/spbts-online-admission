@@ -35,8 +35,8 @@ import {
 } from "routes";
 import SectionContainer from "./SectionContainer";
 import PaymentInfo from "./PaymentInfo";
-import { useEmail } from "hooks";
 import { transformDate } from "utils";
+import { useEmail } from "hooks";
 
 type Props = {} & RouteComponentProps;
 
@@ -57,9 +57,13 @@ const College: React.FC<Props> = () => {
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const [showLoadingModal, setShowLoading] = useState(false);
+  const [loading, setShowLoading] = useState(false);
+
+  const [disabled, setDisabled] = useState(false);
 
   const onFormSubmit = async (data: CollegeTypes) => {
+    setDisabled(true);
+
     console.log(data);
 
     const birthDate = transformDate(data.birthDate);
@@ -72,7 +76,7 @@ const College: React.FC<Props> = () => {
     };
 
     try {
-      const response = sendEmail(newData);
+      const response = await sendEmail(newData);
 
       setShowLoading(true);
 
@@ -80,6 +84,7 @@ const College: React.FC<Props> = () => {
         setTimeout(() => {
           setShowLoading(false);
           setShowSuccessModal(true);
+          setDisabled(false);
         }, 3000);
       }
     } catch (error) {
@@ -126,7 +131,7 @@ const College: React.FC<Props> = () => {
 
       <Modal
         type="info"
-        visible={showLoadingModal}
+        visible={loading}
         title="information"
         heading="Processing"
         subHeading="Please wait. Your information is being process."
@@ -134,10 +139,10 @@ const College: React.FC<Props> = () => {
       />
 
       <StyledTheologyContainer>
-        <Form onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)} disabled={disabled}>
           <StyledFormHeader>
             <h1>Pre-Admission Form</h1>
-            <p>Please fill all necessary information with with all honesty.</p>
+            <p>Please fill all necessary information with all honesty.</p>
             <p>Please note, an asterisk(*) denotes a required field.</p>
           </StyledFormHeader>
 
